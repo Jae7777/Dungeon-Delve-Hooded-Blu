@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm8yqcdis85jn"
-path="res://.godot/imported/Mossy_Tile.png-0e3cf6300267a0548767e092fb62e384.ctex"
+uid="uid://brlqkdkhvloeq"
+path="res://.godot/imported/Campfire.png-ea5d7e3546f04ff17c659142150089b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level/Mossy_Tile.png"
-dest_files=["res://.godot/imported/Mossy_Tile.png-0e3cf6300267a0548767e092fb62e384.ctex"]
+source_file="res://Assets/Player/Campfire.png"
+dest_files=["res://.godot/imported/Campfire.png-ea5d7e3546f04ff17c659142150089b4.ctex"]
 
 [params]
 

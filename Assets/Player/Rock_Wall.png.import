@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dm8yqcdis85jn"
-path="res://.godot/imported/Mossy_Tile.png-0e3cf6300267a0548767e092fb62e384.ctex"
+uid="uid://b56mp1su6mra1"
+path="res://.godot/imported/Rock_Wall.png-b6a6accc3894d4e8cdc79e8eb2031016.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Level/Mossy_Tile.png"
-dest_files=["res://.godot/imported/Mossy_Tile.png-0e3cf6300267a0548767e092fb62e384.ctex"]
+source_file="res://Assets/Player/Rock_Wall.png"
+dest_files=["res://.godot/imported/Rock_Wall.png-b6a6accc3894d4e8cdc79e8eb2031016.ctex"]
 
 [params]
 

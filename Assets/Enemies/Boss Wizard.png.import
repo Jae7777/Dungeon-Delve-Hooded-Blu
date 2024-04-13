@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpjymtqtm2oct"
-path="res://.godot/imported/Boss Wizard.png-4b6e75624ac7c863e78635ea266f132b.ctex"
+path="res://.godot/imported/Boss Wizard.png-bd15b47fc7c235a8894ae8e6e99447bb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Boss Wizard.png"
-dest_files=["res://.godot/imported/Boss Wizard.png-4b6e75624ac7c863e78635ea266f132b.ctex"]
+source_file="res://Assets/Enemies/Boss Wizard.png"
+dest_files=["res://.godot/imported/Boss Wizard.png-bd15b47fc7c235a8894ae8e6e99447bb.ctex"]
 
 [params]
 
