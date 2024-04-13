@@ -1,9 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt5stq2y0856y"]
+[gd_scene load_steps=15 format=3 uid="uid://bt5stq2y0856y"]
 
 [ext_resource type="Texture2D" uid="uid://bcjnuphhk1jqm" path="res://Assets/Level/Mossy_Tile_Map.png" id="1_8r1vw"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_v7neu"]
 [ext_resource type="PackedScene" uid="uid://byv3gagsjg134" path="res://Scenes/player.tscn" id="3_7atcv"]
 [ext_resource type="Script" path="res://EnemiesSpawnArea.gd" id="3_uo8ij"]
+[ext_resource type="Texture2D" uid="uid://qhhiiqkplgn5" path="res://Assets/Rock_Wall.png" id="4_ihcuj"]
+[ext_resource type="Texture2D" uid="uid://6mef3k4esws5" path="res://Assets/Player/Rock Wall Corner.png" id="5_to5qk"]
+[ext_resource type="Texture2D" uid="uid://ce7bfwr0macs7" path="res://Assets/Player/Wall.png" id="6_dhy5j"]
+[ext_resource type="Texture2D" uid="uid://brlqkdkhvloeq" path="res://Assets/Player/Campfire.png" id="6_nu2bc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ar7i"]
 resource_name = "Floor"
@@ -11,8 +15,56 @@ texture = ExtResource("1_8r1vw")
 texture_region_size = Vector2i(512, 512)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fbl3k"]
+texture = ExtResource("4_ihcuj")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g2ahm"]
+texture = ExtResource("5_to5qk")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m0lor"]
+texture = ExtResource("6_dhy5j")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c14ky"]
+texture = ExtResource("6_nu2bc")
+texture_region_size = Vector2i(64, 64)
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+1:2/0 = 0
+1:1/0 = 0
+3:3/0 = 0
+2:3/0 = 0
+1:3/0 = 0
+0:3/0 = 0
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_m1n25"]
 sources/1 = SubResource("TileSetAtlasSource_6ar7i")
+sources/2 = SubResource("TileSetAtlasSource_fbl3k")
+sources/3 = SubResource("TileSetAtlasSource_g2ahm")
+sources/5 = SubResource("TileSetAtlasSource_m0lor")
+sources/8 = SubResource("TileSetAtlasSource_c14ky")
 
 [node name="Level" type="Node2D"]
 
@@ -27,6 +79,8 @@ tile_set = SubResource("TileSet_m1n25")
 format = 2
 layer_0/name = "Floor"
 layer_0/tile_data = PackedInt32Array(-1114096, 1, 0, -1048592, 1, 0, 1048560, 1, 0, 983056, 1, 0, 983088, 1, 0, 983087, 1, 0, -1114064, 1, 0, -1114032, 1, 0, 983120, 1, 0, 3145712, 1, 0, 3080208, 1, 0, 3080240, 1, 0, 3080272, 1, 0)
+layer_1/name = "Obstacle"
+layer_1/tile_data = PackedInt32Array(-1572888, 3, 0, -1638312, 3, 1342177280, 3604568, 3, 805306368, 3669992, 3, 1610612736, 3932148, 5, 536870912, 3932156, 5, 805306368, 3866628, 5, 536870912, 3866636, 5, 268435456, 3866644, 5, 0, 3866652, 5, 268435456, 3866660, 5, 0, 3866668, 5, 268435456, 3866676, 5, 0, 3866684, 5, 805306368, 3866692, 5, 536870912, 3866700, 5, 536870912, 2883556, 5, 1342177280, 2359268, 5, 1879048192, 1834980, 5, 1879048192, 1310692, 5, 1342177280, 786404, 5, 1879048192, 262116, 5, 1879048192, -262172, 5, 1342177280, -786460, 5, 1879048192, -1310748, 5, 1879048192, 196580, 5, 1879048192, -65564, 5, 1879048192, -1835020, 5, 268435456, -1835012, 5, 268435456, -1900540, 5, 0, -1900532, 5, 0, -1900524, 5, 0, -1900516, 5, 268435456, -1900508, 5, 0, -1900500, 5, 0, -1900492, 5, 268435456, -1900484, 5, 268435456, -1900476, 5, 0, -1900468, 5, 268435456, -851876, 5, 1879048192, -327588, 5, 1342177280, 196700, 5, 1610612736, 720988, 5, 1342177280, 1245276, 5, 1879048192, 1769564, 5, 1342177280, 2293852, 5, 1342177280, 2818140, 5, 1879048192, -589821, 8, 0, 54, 8, 0, 2228215, 8, 0, 2228269, 8, 0, 1048653, 8, 0, 2949198, 8, 0, 3342345, 8, 0)
 
 [node name="EnemiesSpawnArea" type="Node2D" parent="."]
 script = ExtResource("3_uo8ij")
