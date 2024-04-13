@@ -8,7 +8,6 @@ func _process(_delta):
 		for body in bodies_in_hitbox:
 			if body.has_method("take_damage"):
 				body.take_damage(damage)
-				print(body)
 
 func _on_hitbox_body_entered(body):
 	bodies_in_hitbox[body] = null

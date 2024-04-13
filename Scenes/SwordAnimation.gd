@@ -4,7 +4,7 @@ var animation_timer = null
 var can_attack
 
 func _ready():
-	animation_timer = $"../../TImers/AttackTimer"
+	animation_timer = $"../../../TImers/AttackTimer"
 	can_attack = true
 	
 func _process(_delta):

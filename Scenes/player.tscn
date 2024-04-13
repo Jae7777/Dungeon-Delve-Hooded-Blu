@@ -79,21 +79,22 @@ frame = 1
 frame_progress = 0.45941
 script = ExtResource("7_0a1af")
 
-[node name="Weapon" type="Node2D" parent="."]
-position = Vector2(80, 124)
+[node name="Weapon" type="Node2D" parent="PlayerAnimation"]
+position = Vector2(80, 120.736)
+scale = Vector2(1, 0.973681)
 script = ExtResource("8_xc4v3")
 
-[node name="Hitbox" type="Area2D" parent="Weapon"]
+[node name="Hitbox" type="Area2D" parent="PlayerAnimation/Weapon"]
 position = Vector2(284, -160)
 scale = Vector2(1.24353, -1.34425)
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnimation/Weapon/Hitbox"]
 position = Vector2(0, 26.7808)
 scale = Vector2(1.25922, 0.819857)
 shape = SubResource("RectangleShape2D_x8unv")
 
-[node name="SwordAnimation" type="AnimatedSprite2D" parent="Weapon"]
+[node name="SwordAnimation" type="AnimatedSprite2D" parent="PlayerAnimation/Weapon"]
 position = Vector2(212, -212)
 scale = Vector2(1.98814, 1.9875)
 sprite_frames = SubResource("SpriteFrames_1acr5")
@@ -109,7 +110,7 @@ one_shot = true
 [node name="HitTimer" type="Timer" parent="TImers"]
 one_shot = true
 
-[connection signal="body_entered" from="Weapon/Hitbox" to="Weapon" method="_on_hitbox_body_entered"]
-[connection signal="body_exited" from="Weapon/Hitbox" to="Weapon" method="_on_hitbox_body_exited"]
-[connection signal="timeout" from="TImers/AttackTimer" to="Weapon/SwordAnimation" method="_on_timer_timeout"]
+[connection signal="body_entered" from="PlayerAnimation/Weapon/Hitbox" to="PlayerAnimation/Weapon" method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="PlayerAnimation/Weapon/Hitbox" to="PlayerAnimation/Weapon" method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="TImers/AttackTimer" to="PlayerAnimation/Weapon/SwordAnimation" method="_on_timer_timeout"]
 [connection signal="timeout" from="TImers/HitTimer" to="." method="_on_hit_timer_timeout"]
