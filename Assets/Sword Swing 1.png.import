@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bentil3s204qx"
-path="res://.godot/imported/Player.png-54d4b13ac506f96b99814af866f299ae.ctex"
+uid="uid://csfumidty7mkt"
+path="res://.godot/imported/Sword Swing 1.png-bd3231a5a712650c400be696e1c4c92f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player.png"
-dest_files=["res://.godot/imported/Player.png-54d4b13ac506f96b99814af866f299ae.ctex"]
+source_file="res://Assets/Sword Swing 1.png"
+dest_files=["res://.godot/imported/Sword Swing 1.png-bd3231a5a712650c400be696e1c4c92f.ctex"]
 
 [params]
 

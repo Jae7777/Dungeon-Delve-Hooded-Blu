@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://byv3gagsjg134"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh1p2"]
+[ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="2_aqtp5"]
+[ext_resource type="Texture2D" uid="uid://dbgvbpq140at0" path="res://Assets/Player/Down.png" id="3_ghd7n"]
+[ext_resource type="Texture2D" uid="uid://c8lx7ifjxihdo" path="res://Assets/Player/Pass.png" id="4_8m04j"]
+[ext_resource type="Texture2D" uid="uid://bmqtxaubehgek" path="res://Assets/Player/Up.png" id="5_o7kuh"]
+[ext_resource type="Texture2D" uid="uid://bainqt7emi6gv" path="res://Assets/Player/Contact 2.png" id="6_iuy2e"]
+[ext_resource type="Script" path="res://PlayerAnimation.gd" id="7_0a1af"]
+[ext_resource type="Texture2D" uid="uid://dr2rt164af634" path="res://Assets/Sword.png" id="8_45aen"]
+[ext_resource type="Script" path="res://Scenes/Sword.gd" id="9_c2pmy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsy2w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xepep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aqtp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ghd7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8m04j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o7kuh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_iuy2e")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkceg"]
+size = Vector2(328, 447.895)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_rh1p2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nsy2w")
+
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1, 1.02703)
+sprite_frames = SubResource("SpriteFrames_xepep")
+animation = &"Walk"
+frame = 1
+frame_progress = 0.45941
+script = ExtResource("7_0a1af")
+
+[node name="Sword" type="Sprite2D" parent="PlayerAnimation"]
+position = Vector2(240, -38.9474)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_45aen")
+script = ExtResource("9_c2pmy")
+
+[node name="Hitbox" type="Area2D" parent="PlayerAnimation/Sword"]
+scale = Vector2(1, 1.02703)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnimation/Sword/Hitbox"]
+position = Vector2(44, -17.5263)
+shape = SubResource("RectangleShape2D_xkceg")
+
+[connection signal="body_entered" from="PlayerAnimation/Sword/Hitbox" to="PlayerAnimation/Sword" method="_on_hitbox_body_entered"]

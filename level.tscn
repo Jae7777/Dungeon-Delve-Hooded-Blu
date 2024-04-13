@@ -1,15 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bt5stq2y0856y"]
+[gd_scene load_steps=7 format=3 uid="uid://bt5stq2y0856y"]
 
 [ext_resource type="Texture2D" uid="uid://bcjnuphhk1jqm" path="res://Assets/Mossy_Tile_Map.png" id="1_8r1vw"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_v7neu"]
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="3_g5jff"]
-[ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="4_rnfkj"]
-[ext_resource type="Texture2D" uid="uid://dbgvbpq140at0" path="res://Assets/Player/Down.png" id="5_b4ob1"]
-[ext_resource type="Texture2D" uid="uid://c8lx7ifjxihdo" path="res://Assets/Player/Pass.png" id="6_ac3ek"]
-[ext_resource type="Texture2D" uid="uid://bmqtxaubehgek" path="res://Assets/Player/Up.png" id="7_n6hq8"]
-[ext_resource type="Texture2D" uid="uid://bainqt7emi6gv" path="res://Assets/Player/Contact 2.png" id="8_7yxqw"]
-[ext_resource type="Script" path="res://PlayerAnimation.gd" id="9_lda86"]
-[ext_resource type="Texture2D" uid="uid://dr2rt164af634" path="res://Assets/Sword.png" id="10_t3krv"]
+[ext_resource type="PackedScene" uid="uid://byv3gagsjg134" path="res://Scenes/player.tscn" id="3_7atcv"]
+[ext_resource type="Script" path="res://EnemiesSpawnArea.gd" id="3_uo8ij"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ar7i"]
 resource_name = "Floor"
@@ -1043,31 +1037,6 @@ texture_region_size = Vector2i(512, 512)
 [sub_resource type="TileSet" id="TileSet_m1n25"]
 sources/1 = SubResource("TileSetAtlasSource_6ar7i")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsy2w"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xepep"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_rnfkj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_b4ob1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_ac3ek")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_n6hq8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_7yxqw")
-}],
-"loop": true,
-"name": &"Walk",
-"speed": 8.0
-}]
-
 [node name="Level" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -1082,26 +1051,9 @@ format = 2
 layer_0/name = "Floor"
 layer_0/tile_data = PackedInt32Array(-1114096, 1, 0, -1048592, 1, 0, 1048560, 1, 0, 983056, 1, 0, 983088, 1, 0, 983087, 1, 0, -1114064, 1, 0, -1114032, 1, 0, 983120, 1, 0, 3145712, 1, 0, 3080208, 1, 0, 3080240, 1, 0, 3080272, 1, 0)
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="EnemiesSpawnArea" type="Node2D" parent="."]
+script = ExtResource("3_uo8ij")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-scale = Vector2(0.25, 0.25)
-script = ExtResource("3_g5jff")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_nsy2w")
-
-[node name="PlayerAnimation" type="AnimatedSprite2D" parent="Player"]
-scale = Vector2(1, 1.02703)
-sprite_frames = SubResource("SpriteFrames_xepep")
-animation = &"Walk"
-frame = 1
-frame_progress = 0.45941
-script = ExtResource("9_lda86")
-
-[node name="Sword" type="Sprite2D" parent="Player/PlayerAnimation"]
-position = Vector2(188, 19.4737)
-scale = Vector2(1, 0.973684)
-texture = ExtResource("10_t3krv")
+[node name="Player" parent="." instance=ExtResource("3_7atcv")]
 
 [node name="Objects" type="Node2D" parent="."]
