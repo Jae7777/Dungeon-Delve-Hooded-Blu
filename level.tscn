@@ -1,9 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt5stq2y0856y"]
+[gd_scene load_steps=15 format=3 uid="uid://bt5stq2y0856y"]
 
 [ext_resource type="Texture2D" uid="uid://bcjnuphhk1jqm" path="res://Assets/Mossy_Tile_Map.png" id="1_8r1vw"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_v7neu"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="3_g5jff"]
-[ext_resource type="Texture2D" uid="uid://bentil3s204qx" path="res://Assets/Player.png" id="4_3t5s5"]
+[ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="4_rnfkj"]
+[ext_resource type="Texture2D" uid="uid://dbgvbpq140at0" path="res://Assets/Player/Down.png" id="5_b4ob1"]
+[ext_resource type="Texture2D" uid="uid://c8lx7ifjxihdo" path="res://Assets/Player/Pass.png" id="6_ac3ek"]
+[ext_resource type="Texture2D" uid="uid://bmqtxaubehgek" path="res://Assets/Player/Up.png" id="7_n6hq8"]
+[ext_resource type="Texture2D" uid="uid://bainqt7emi6gv" path="res://Assets/Player/Contact 2.png" id="8_7yxqw"]
+[ext_resource type="Script" path="res://PlayerAnimation.gd" id="9_lda86"]
+[ext_resource type="Texture2D" uid="uid://dr2rt164af634" path="res://Assets/Sword.png" id="10_t3krv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ar7i"]
 resource_name = "Floor"
@@ -1039,6 +1045,29 @@ sources/1 = SubResource("TileSetAtlasSource_6ar7i")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsy2w"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_xepep"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rnfkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b4ob1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ac3ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n6hq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7yxqw")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 8.0
+}]
+
 [node name="Level" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -1062,7 +1091,17 @@ script = ExtResource("3_g5jff")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_nsy2w")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("4_3t5s5")
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="Player"]
+scale = Vector2(1, 1.02703)
+sprite_frames = SubResource("SpriteFrames_xepep")
+animation = &"Walk"
+frame = 1
+frame_progress = 0.45941
+script = ExtResource("9_lda86")
+
+[node name="Sword" type="Sprite2D" parent="Player/PlayerAnimation"]
+position = Vector2(188, 19.4737)
+scale = Vector2(1, 0.973684)
+texture = ExtResource("10_t3krv")
 
 [node name="Objects" type="Node2D" parent="."]
