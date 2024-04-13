@@ -7,7 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var mouse_pos = get_viewport().get_mouse_position()
 	var screen_center = get_viewport_rect().size / 2
 	if (mouse_pos.x < screen_center.x):

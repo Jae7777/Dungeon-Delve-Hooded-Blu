@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clpjg13i2mkfv"
-path="res://.godot/imported/Rock_Wall_Corner.png-53e519f3659368d4acd3aa0929e02938.ctex"
+path="res://.godot/imported/Rock_Wall_Corner.png-76c974b28a0506765a5725a6bd009f23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Rock_Wall_Corner.png"
-dest_files=["res://.godot/imported/Rock_Wall_Corner.png-53e519f3659368d4acd3aa0929e02938.ctex"]
+source_file="res://Assets/Level/Rock_Wall_Corner.png"
+dest_files=["res://.godot/imported/Rock_Wall_Corner.png-76c974b28a0506765a5725a6bd009f23.ctex"]
 
 [params]
 

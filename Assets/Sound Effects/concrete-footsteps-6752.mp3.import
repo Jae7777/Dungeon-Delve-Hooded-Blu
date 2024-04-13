@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cwbv14rt666yg"
-path="res://.godot/imported/concrete-footsteps-6752.mp3-d2f28b8ecf8dda7e2f5a4eda4b7bd78a.mp3str"
+path="res://.godot/imported/concrete-footsteps-6752.mp3-40a366616c90d8f0f25e73600cf4534d.mp3str"
 
 [deps]
 
-source_file="res://Assets/concrete-footsteps-6752.mp3"
-dest_files=["res://.godot/imported/concrete-footsteps-6752.mp3-d2f28b8ecf8dda7e2f5a4eda4b7bd78a.mp3str"]
+source_file="res://Assets/Sound Effects/concrete-footsteps-6752.mp3"
+dest_files=["res://.godot/imported/concrete-footsteps-6752.mp3-40a366616c90d8f0f25e73600cf4534d.mp3str"]
 
 [params]
 

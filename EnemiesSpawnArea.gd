@@ -10,7 +10,7 @@ func _ready():
 	player = $"../Player"
 	spawnEnemies()
 	
-func _process(delta):
+func _process(_delta):
 	pass
 
 func spawnEnemies():

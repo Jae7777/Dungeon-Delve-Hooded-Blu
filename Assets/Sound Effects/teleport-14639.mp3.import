@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://cd5q1xc8xokq2"
-path="res://.godot/imported/teleport-14639.mp3-8827f1adf46126032a5dd8a7b321b72f.mp3str"
+path="res://.godot/imported/teleport-14639.mp3-9e27ffa56f02943cf93726ea2317ed36.mp3str"
 
 [deps]
 
-source_file="res://Assets/teleport-14639.mp3"
-dest_files=["res://.godot/imported/teleport-14639.mp3-8827f1adf46126032a5dd8a7b321b72f.mp3str"]
+source_file="res://Assets/Sound Effects/teleport-14639.mp3"
+dest_files=["res://.godot/imported/teleport-14639.mp3-9e27ffa56f02943cf93726ea2317ed36.mp3str"]
 
 [params]
 

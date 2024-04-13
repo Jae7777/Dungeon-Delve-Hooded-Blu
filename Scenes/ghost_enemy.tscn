@@ -27,6 +27,8 @@ animations = [{
 }]
 
 [node name="GhostEnemy" type="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 25
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_mxlhq")
 

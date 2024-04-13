@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://byv3gagsjg134"]
+[gd_scene load_steps=17 format=3 uid="uid://byv3gagsjg134"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh1p2"]
 [ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="2_aqtp5"]
@@ -7,8 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bmqtxaubehgek" path="res://Assets/Player/Up.png" id="5_o7kuh"]
 [ext_resource type="Texture2D" uid="uid://bainqt7emi6gv" path="res://Assets/Player/Contact 2.png" id="6_iuy2e"]
 [ext_resource type="Script" path="res://PlayerAnimation.gd" id="7_0a1af"]
-[ext_resource type="Texture2D" uid="uid://dr2rt164af634" path="res://Assets/Sword.png" id="8_45aen"]
-[ext_resource type="Script" path="res://Scenes/Sword.gd" id="9_c2pmy"]
+[ext_resource type="Texture2D" uid="uid://csfumidty7mkt" path="res://Assets/Weapons/Sword Swing 1.png" id="8_lpxf2"]
+[ext_resource type="Script" path="res://Scenes/Weapon.gd" id="8_xc4v3"]
+[ext_resource type="Texture2D" uid="uid://cmm5nst0ffowp" path="res://Assets/Weapons/Sword Swing 2.png" id="9_3chum"]
+[ext_resource type="Script" path="res://Scenes/SwordAnimation.gd" id="10_2ljhd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nsy2w"]
 
@@ -35,10 +37,34 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkceg"]
-size = Vector2(328, 447.895)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8unv"]
+size = Vector2(236.547, 508.124)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rcrk2"]
+load_path = "res://.godot/imported/Sword.png-c2168624287cc99302098ddad4549040.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1acr5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_rcrk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lpxf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3chum")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_rcrk2")
+}],
+"loop": true,
+"name": &"Swing",
+"speed": 20.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
+visibility_layer = 31
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_rh1p2")
 
@@ -53,17 +79,37 @@ frame = 1
 frame_progress = 0.45941
 script = ExtResource("7_0a1af")
 
-[node name="Sword" type="Sprite2D" parent="PlayerAnimation"]
-position = Vector2(240, -38.9474)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("8_45aen")
-script = ExtResource("9_c2pmy")
+[node name="Weapon" type="Node2D" parent="."]
+position = Vector2(80, 124)
+script = ExtResource("8_xc4v3")
 
-[node name="Hitbox" type="Area2D" parent="PlayerAnimation/Sword"]
-scale = Vector2(1, 1.02703)
+[node name="Hitbox" type="Area2D" parent="Weapon"]
+position = Vector2(284, -160)
+scale = Vector2(1.24353, -1.34425)
+collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnimation/Sword/Hitbox"]
-position = Vector2(44, -17.5263)
-shape = SubResource("RectangleShape2D_xkceg")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/Hitbox"]
+position = Vector2(0, 26.7808)
+scale = Vector2(1.25922, 0.819857)
+shape = SubResource("RectangleShape2D_x8unv")
 
-[connection signal="body_entered" from="PlayerAnimation/Sword/Hitbox" to="PlayerAnimation/Sword" method="_on_hitbox_body_entered"]
+[node name="SwordAnimation" type="AnimatedSprite2D" parent="Weapon"]
+position = Vector2(212, -212)
+scale = Vector2(1.98814, 1.9875)
+sprite_frames = SubResource("SpriteFrames_1acr5")
+animation = &"Swing"
+script = ExtResource("10_2ljhd")
+
+[node name="TImers" type="Node" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="TImers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="HitTimer" type="Timer" parent="TImers"]
+one_shot = true
+
+[connection signal="body_entered" from="Weapon/Hitbox" to="Weapon" method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="Weapon/Hitbox" to="Weapon" method="_on_hitbox_body_exited"]
+[connection signal="timeout" from="TImers/AttackTimer" to="Weapon/SwordAnimation" method="_on_timer_timeout"]
+[connection signal="timeout" from="TImers/HitTimer" to="." method="_on_hit_timer_timeout"]
