@@ -11,8 +11,9 @@ var face_direction = Vector2()
 var is_vulnerable
 var max_health = 100
 var current_health = max_health
-var fireball_scene = preload("res://windslash.tscn")
+var windslash_scene = preload("res://windslash.tscn")
 var can_dash = true
+var can_attack = true
 
 func _ready():
 	is_vulnerable = true
@@ -29,10 +30,12 @@ func _process(_delta):
 		#position += get_global_mouse_position().normalized() * dash_distance
 		$TImers/DashTimer.start()
 		$PlayerAnimation/Dash.play()
-	if Input.is_action_just_pressed("PrimaryAction"):
+	if Input.is_action_just_pressed("PrimaryAction") and can_attack:
+		can_attack = false
+		$TImers/AttackTimer.start()
 		$PlayerAnimation/Sword.play()
-		var fireball = fireball_scene.instantiate().with_data($PlayerAnimation/Marker2D.global_position, get_global_mouse_position())
-		$"../Projectiles".add_child(fireball)
+		var windslash = windslash_scene.instantiate().with_data($PlayerAnimation/Marker2D.global_position, get_global_mouse_position())
+		$"../Projectiles".add_child(windslash)
 
 
 func get_input(direction):
@@ -49,7 +52,6 @@ func heal(amount):
 func take_damage(amount):
 	$PlayerAnimation/OOF.play();
 	current_health -= amount
-	print("taking damage")
 	damage_taken.emit()
 	if current_health <= 0:
 		queue_free()
@@ -61,3 +63,6 @@ func _on_hit_timer_timeout():
 func _on_dash_timer_timeout():
 	SPEED = 400
 	can_dash = true
+
+func _on_attack_timer_timeout():
+	can_attack = true

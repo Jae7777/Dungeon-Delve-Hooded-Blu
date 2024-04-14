@@ -78,7 +78,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("13_wb3co")
 }],
-"loop": true,
+"loop": false,
 "name": &"Swing",
 "speed": 15.0
 }]
@@ -177,6 +177,7 @@ target = NodePath("..")
 [connection signal="area_shape_exited" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_area_shape_exited"]
 [connection signal="body_entered" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_body_entered"]
 [connection signal="body_exited" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_body_exited"]
+[connection signal="timeout" from="TImers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="TImers/AttackTimer" to="PlayerAnimation/Hitbox/SwordAnimation" method="_on_timer_timeout"]
 [connection signal="timeout" from="TImers/HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="TImers/DashTimer" to="." method="_on_dash_timer_timeout"]

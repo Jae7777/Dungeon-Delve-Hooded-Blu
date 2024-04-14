@@ -14,4 +14,9 @@ func with_data(spawn_pos, target_dir):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	move_and_collide(constant_linear_velocity * delta)
+	var body = move_and_collide(constant_linear_velocity * delta)
+	if body != null:
+		print(body.get_collider().has_method("take_damage"))
+		if body.get_collider().has_method("take_damage"):
+			body.get_collider().take_damage(10)
+		queue_free()

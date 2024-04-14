@@ -40,7 +40,6 @@ func _process(delta):
 		target.take_damage(damage)
 		$Timers/DamageTimer.start()
 
-
 func _on_attack_timer_timeout():
 	can_attack = true
 
