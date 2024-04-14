@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhsm3b10iquf5"]
+[gd_scene load_steps=3 format=3 uid="uid://bhsm3b10iquf5"]
 
 [ext_resource type="Script" path="res://fire_ball.gd" id="1_kkx6c"]
-[ext_resource type="Texture2D" uid="uid://bk4el105cw6ov" path="res://Assets/Player/Sword Slash Projectile.png" id="2_jnuca"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rqmc2"]
-radius = 80.0062
+[ext_resource type="Texture2D" uid="uid://dk6clcghgvgm2" path="res://Assets/Weapons/Sword Slash Projectile.png" id="2_dpr1f"]
 
 [node name="Windslash" type="StaticBody2D"]
 collision_layer = 32
@@ -13,9 +10,11 @@ script = ExtResource("1_kkx6c")
 
 [node name="Windslash" type="Sprite2D" parent="."]
 position = Vector2(16, 6)
-texture = ExtResource("2_jnuca")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_dpr1f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 1)
-scale = Vector2(0.689787, -0.817736)
-shape = SubResource("CircleShape2D_rqmc2")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Windslash"]
+polygon = PackedVector2Array(-34, -106, 18, -95, 64, -47, 76, 1, 65, 46, 27, 89, -15, 106)
+
+[node name="animation_timer" type="Timer" parent="."]
+wait_time = 0.4

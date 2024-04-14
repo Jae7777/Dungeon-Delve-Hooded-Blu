@@ -7,7 +7,8 @@ func _ready():
 	constant_linear_velocity = Vector2(speed * cos(rotation), speed * sin(rotation))
 
 func with_data(spawn_pos, target_dir):
-	position = spawn_pos
+	$animation_timer.start()
+	position = Vector2(spawn_pos.x + 20, spawn_pos.y)
 	look_at(target_dir)
 	return self
 
