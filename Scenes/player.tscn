@@ -55,7 +55,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("9_ryulh")
 }],
-"loop": true,
+"loop": false,
 "name": &"dash",
 "speed": 5.0
 }]
@@ -158,6 +158,9 @@ one_shot = true
 [node name="DashTimer" type="Timer" parent="TImers"]
 one_shot = true
 
+[node name="DashAnimation" type="Timer" parent="TImers"]
+wait_time = 0.05
+
 [node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("target")]
 offset_left = -80.0
 offset_top = 244.0
@@ -180,3 +183,4 @@ target = NodePath("..")
 [connection signal="timeout" from="TImers/AttackTimer" to="PlayerAnimation/Hitbox/SwordAnimation" method="_on_timer_timeout"]
 [connection signal="timeout" from="TImers/HitTimer" to="." method="_on_hit_timer_timeout"]
 [connection signal="timeout" from="TImers/DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="TImers/DashAnimation" to="." method="_on_dash_animation_timeout"]

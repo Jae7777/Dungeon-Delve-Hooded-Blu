@@ -26,7 +26,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Dash") and can_dash:
 		can_dash = false
 		dash.emit()
-		position += get_global_mouse_position().normalized() * dash_distance
+		#position += get_global_mouse_position().normalized() * dash_distance
 		#position += get_global_mouse_position().normalized() * dash_distance
 		$TImers/DashTimer.start()
 		$PlayerAnimation/Dash.play()
@@ -66,3 +66,6 @@ func _on_dash_timer_timeout():
 
 func _on_attack_timer_timeout():
 	can_attack = true
+
+func _on_dash_animation_timeout():
+	pass # Replace with function body.

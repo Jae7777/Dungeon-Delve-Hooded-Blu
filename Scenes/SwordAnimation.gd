@@ -10,7 +10,6 @@ func _process(_delta):
 		$"../../../TImers/AttackTimer".start()
 		can_attack = false
 		play("Swing")
-	
 
 func _on_timer_timeout():
 	can_attack = true
