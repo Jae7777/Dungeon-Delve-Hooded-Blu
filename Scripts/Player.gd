@@ -47,6 +47,7 @@ func heal(amount):
 
 func take_damage(amount):
 	current_health -= amount
+	print("taking damage")
 	damage_taken.emit()
 	if current_health <= 0:
 		queue_free()
