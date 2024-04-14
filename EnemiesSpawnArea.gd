@@ -56,14 +56,14 @@ func _process(_delta):
 	if get_child_count() == 0:
 		spawnEnemies()
 		waves_defeated += 1
-	if waves_defeated == 2:
-		$"../Sountrack".stop()
+		$"../Sountrack".play()
 
 func spawnEnemies():
-	if waves_defeated == 1:
+	if waves_defeated % 2 == 1:
 		$"../Boss Laugh".play()
 		$"../BossMusic".play()
 		var boss = bosses[0].instantiate()
+		boss.max_health = waves_defeated * 240
 		boss.position = Vector2(0, 0)
 		add_child(boss)
 		pass
