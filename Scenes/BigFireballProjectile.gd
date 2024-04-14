@@ -4,7 +4,7 @@ var speed = 10
 var direction = Vector2.ZERO
 var is_in_attack_range = false
 var damage = 10
-@onready var target = $"../../Player"
+@onready var target = $"../Player"
 
 func _process(delta):
 	
@@ -17,7 +17,6 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	is_in_attack_range = true
-	
 	
 func _on_area_2d_body_exited(_body):
 	is_in_attack_range = false

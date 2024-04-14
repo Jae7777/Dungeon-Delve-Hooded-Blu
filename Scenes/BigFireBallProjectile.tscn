@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://yxjcx3mwwgju"]
+
+[ext_resource type="Texture2D" uid="uid://bwuiuea7er8o0" path="res://Assets/Enemies/Projectile Fireball.png" id="1_owjs8"]
+
+[sub_resource type="GDScript" id="GDScript_uqlon"]
+script/source = "extends Area2D
+
+var speed = 10
+var direction = Vector2.ZERO
+var is_in_attack_range = false
+var damage = 10
+@onready var target = $\"../../../Player\"
+
+func _process(delta):
+	
+	if is_in_attack_range:
+		target.take_damage(damage)
+	$Timer.start()
+
+func _physics_process(delta):
+	position += direction * speed
+
+func _on_body_entered(_body):
+	is_in_attack_range = true
+	
+func _on_body_exited(_body):
+	is_in_attack_range = false
+
+
+func _on_timer_timeout():
+	queue_free()
+"
+
+[node name="BigFireBallProjectile" type="Area2D"]
+collision_layer = 32
+script = SubResource("GDScript_uqlon")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_owjs8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(1, -75, -75, 3, 4, 82, 83, 2)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -7,10 +7,15 @@ var wave_size = 10
 var enemies = [
 	preload("res://Scenes/ghost_enemy.tscn"),
 	preload("res://Scenes/fire_golem.tscn"),
-	preload("res://Scenes/chest.tscn")
+	
 ]
+
 var bosses = [
 	preload("res://Scenes/Boss.tscn")
+]
+
+var object = [
+	preload("res://Scenes/chest.tscn")
 ]
 var waves_defeated
 
@@ -37,6 +42,9 @@ func spawnEnemies():
 		pass
 		#increment waves defeated when boss ded
 	else:
+		var chest = object[0].instantiate()
+		chest.position = Vector2(0, 0)
+		add_child(chest)		
 		for i in range(wave_size):
 			var spawnPosition = calculateRandomSpawnPosition()
 			var enemy = enemies[randi_range(0, enemies.size() - 1)].instantiate().with_data(randi_range(0, 2))

@@ -1,7 +1,7 @@
 extends Area2D
 
 var is_in_attack_range = false
-var target = null
+var target
 
 func _ready():
 	target = $"../../Player/PlayerAnimation/Hitbox"

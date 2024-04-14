@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dmdsmhsv123u6" path="res://Assets/Enemies/Big Fireball projectile.png" id="2_jy17u"]
 
 [node name="Fireball" type="Area2D"]
+collision_layer = 32
 script = ExtResource("1_opjxw")
 
 [node name="BigFireballProjectile" type="Sprite2D" parent="."]
@@ -12,3 +13,10 @@ texture = ExtResource("2_jy17u")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-35, -37)
 polygon = PackedVector2Array(36, 9, 6, 40, 35, 66, 63, 37)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
