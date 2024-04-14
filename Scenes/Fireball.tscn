@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqghiurf1inmt"]
+
+[ext_resource type="Script" path="res://Fireball.gd" id="1_opjxw"]
+[ext_resource type="Texture2D" uid="uid://dmdsmhsv123u6" path="res://Assets/Enemies/Big Fireball projectile.png" id="2_jy17u"]
+
+[node name="Fireball" type="Area2D"]
+script = ExtResource("1_opjxw")
+
+[node name="BigFireballProjectile" type="Sprite2D" parent="."]
+texture = ExtResource("2_jy17u")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-35, -37)
+polygon = PackedVector2Array(36, 9, 6, 40, 35, 66, 63, 37)

@@ -9,6 +9,7 @@ var current_health = max_health
 var damage = 0
 var can_attack = true
 var heart_crystal_scene: PackedScene = preload("res://Scenes/heart_crystal.tscn")
+var Fireball: PackedScene = preload("res://Scenes/Fireball.tscn")
 
 func _ready():
 	target = $"../../Player"
@@ -24,19 +25,19 @@ func _process(delta):
 		
 	if can_attack:
 		can_attack = false
-		$Timers/AttackCooldown.start()
 		attack.emit()
-		$Timers/DamageTimer.start()
-
+		$Timers/AttackTimer.start()
+		
 func take_damage(amount):
 	current_health -= amount
 	damage_taken.emit()
 	print("goloem", current_health)
 
-func _on_damage_timer_timeout():
+func _on_golem_animation_animation_finished():
+	var fire = Fireball.instantiate()	
+	add_child(fire)
+	fire.direction = global_position.direction_to(target.global_position)
+	fire.global_position = global_position
+
+func _on_attack_timer_timeout():
 	can_attack = true
-
-
-
-func _on_attack_cooldown_timeout():
-	pass # Replace with function body.

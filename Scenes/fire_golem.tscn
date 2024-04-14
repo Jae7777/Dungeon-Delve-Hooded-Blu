@@ -10,18 +10,18 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_d172r"]
 animations = [{
 "frames": [{
-"duration": 0.5,
+"duration": 1.0,
 "texture": ExtResource("2_qcq53")
 }, {
-"duration": 0.1,
+"duration": 2.0,
 "texture": ExtResource("3_i68sl")
 }, {
-"duration": 0.8,
+"duration": 1.0,
 "texture": ExtResource("4_7i1wp")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack",
-"speed": 1.0
+"speed": 0.8
 }]
 
 [sub_resource type="Theme" id="Theme_w3kr4"]
@@ -45,11 +45,7 @@ polygon = PackedVector2Array(926, 741, 992, 729, 1008, 905, 971, 930, 921, 911)
 
 [node name="Timers" type="Node" parent="."]
 
-[node name="DamageTimer" type="Timer" parent="Timers"]
-wait_time = 10.0
-
-[node name="AttackCooldown" type="Timer" parent="Timers"]
-wait_time = 5.0
+[node name="AttackTimer" type="Timer" parent="Timers"]
 
 [node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("target")]
 offset_left = -79.0
@@ -65,5 +61,5 @@ target = NodePath("..")
 
 [connection signal="attack" from="." to="GolemAnimation" method="_on_fire_golem_attack"]
 [connection signal="damage_taken" from="." to="HealthBar" method="_on_fire_golem_damage_taken"]
-[connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timers/AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="animation_finished" from="GolemAnimation" to="." method="_on_golem_animation_animation_finished"]
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="_on_attack_timer_timeout"]
