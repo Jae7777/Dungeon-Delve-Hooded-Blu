@@ -38,7 +38,7 @@ func _process(delta):
 	if current_health <= 0:
 		var heart_crystal = heart_crystal_scene.instantiate().with_data(position)
 		$"../../Objects".add_child(heart_crystal)
-		$"..".queue_free()
+		queue_free()
 		
 	if can_attack and is_in_attack_range:
 		can_attack = false
