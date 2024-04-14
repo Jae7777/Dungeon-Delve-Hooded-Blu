@@ -8,7 +8,7 @@ var max_health = 15
 var current_health = max_health
 var damage = 0
 var can_attack = true
-var heart_crystal_scene: PackedScene = preload("res://Scenes/heart_crystal.tscn")
+var atkup = preload("res://Scenes/Attack_up.tscn")
 var Fireball: PackedScene = preload("res://Scenes/Fireball.tscn")
 
 func _ready():
@@ -17,10 +17,10 @@ func _ready():
 func with_data(_size):
 	return self
 	
-func _process(delta):
+func _process(_delta):
 	if current_health <= 0:
-		var heart_crystal = heart_crystal_scene.instantiate().with_data(position)
-		$"../../Objects".add_child(heart_crystal)
+		var atkup1 = atkup.instantiate().with_data(position)
+		$"../../Objects".add_child(atkup1)
 		queue_free()
 		
 	if can_attack:

@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://cv70oe5aldh52"]
 
 [ext_resource type="Script" path="res://Scenes/chest.gd" id="1_fys7q"]
-[ext_resource type="Texture2D" uid="uid://rvoo32bbyq56" path="res://Assets/Level/Chest Broken.png" id="2_w7dyv"]
-[ext_resource type="Texture2D" uid="uid://crgc588dm7h6w" path="res://Assets/Level/Chest.png" id="2_x7kgl"]
-[ext_resource type="Texture2D" uid="uid://buyr61c3sj30b" path="res://Assets/Level/Chest Broken 2.png" id="3_81far"]
-[ext_resource type="Texture2D" uid="uid://crar2b8ydfq5h" path="res://Assets/Level/Chest Broken 3.png" id="4_xv4l2"]
-[ext_resource type="Texture2D" uid="uid://vo7ja4trcriv" path="res://Assets/Level/Chest Broken 4.png" id="5_3asee"]
+[ext_resource type="Texture2D" uid="uid://cvf8mbl1dh6m4" path="res://Assets/Level/Chest Broken.png" id="2_w7dyv"]
+[ext_resource type="Texture2D" uid="uid://bfmdaumeai6uc" path="res://Assets/Level/Chest.png" id="2_x7kgl"]
+[ext_resource type="Texture2D" uid="uid://bcu1egiepc5m1" path="res://Assets/Level/Chest Broken 2.png" id="3_81far"]
+[ext_resource type="Texture2D" uid="uid://bj8bwm542hwy3" path="res://Assets/Level/Chest Broken 3.png" id="4_xv4l2"]
+[ext_resource type="Texture2D" uid="uid://t1q8jpjur60k" path="res://Assets/Level/Chest Broken 4.png" id="5_3asee"]
 [ext_resource type="AudioStream" uid="uid://dy0rfil6sh26m" path="res://Assets/Sound Effects/wood-crack-1-105890.mp3" id="7_x0cll"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r20km"]

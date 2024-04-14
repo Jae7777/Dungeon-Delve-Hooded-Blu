@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://crt4e3tj2d7f1"]
+[gd_scene load_steps=26 format=3 uid="uid://crt4e3tj2d7f1"]
 
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_30fap"]
 [ext_resource type="AudioStream" uid="uid://c7jjt07rsew70" path="res://Assets/Sound Effects/random-boss-fight-music-65460.mp3" id="1_45ajw"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://14oh0lk5cw8y" path="res://Assets/Level/rock1.png" id="8_wfalj"]
 [ext_resource type="Texture2D" uid="uid://djo1wu0uv6vie" path="res://Assets/Level/rock2.png" id="9_6kr4a"]
 [ext_resource type="AudioStream" uid="uid://d4ic627sn18oa" path="res://Assets/Sound Effects/650313__lunarrrs__pixel-dungeon.wav" id="13_3d6t2"]
+[ext_resource type="AudioStream" uid="uid://cgrd0o6twpt0f" path="res://Assets/Sound Effects/scary-laugh-123862.mp3" id="15_8ivvk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x20hd"]
 texture = ExtResource("2_rql2w")
@@ -174,3 +175,6 @@ stream = ExtResource("13_3d6t2")
 [node name="Projectiles" type="Node" parent="."]
 
 [node name="Soundtracks" type="Node" parent="."]
+
+[node name="Boss Laugh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_8ivvk")

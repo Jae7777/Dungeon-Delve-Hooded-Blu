@@ -8,3 +8,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	set_position(TargetNode.get_position())
+
+
+func _on_timer_timeout():
+	pass # Replace with function body.

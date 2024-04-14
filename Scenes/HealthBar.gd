@@ -20,3 +20,7 @@ func _on_player_healing():
 
 func _on_fire_golem_damage_taken():
 	set_health_bar()
+
+
+func _on_boss_damage_taken():
+	set_health_bar()

@@ -15,7 +15,8 @@ func _process(delta):
 	
 	if is_in_attack_range:
 		target.take_damage(damage)
-	$Timer.start()
+		$Timer.start()
+	
 
 func _physics_process(delta):
 	position += direction * speed

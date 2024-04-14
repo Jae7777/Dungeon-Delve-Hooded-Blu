@@ -3,16 +3,18 @@ extends StaticBody2D
 signal damage_taken()
 var max_health = 30
 var current_health = max_health
-var powerup = preload("res://Scenes/Attack_up.tscn")
+var powerups = [
+	preload("res://Scenes/Health_up.tscn")
+]
 
-func _process(delta):
+func _process(_delta):
 	if current_health <= 0:
 		$AnimatedSprite2D.play("Break")
-		var atkup = powerup.instantiate().with_data(position)
-		$"../../Objects".add_child(atkup)
+		var powerup = powerups[randi_range(0, powerups.size() - 1)].instantiate().with_data(position)
+		$"../../Objects".add_child(powerup)
 		queue_free()
 
-func with_data(pos):
+func with_data(_pos):
 	return self
 
 func take_damage(amount):

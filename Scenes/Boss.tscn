@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyqff45nfg8jm"]
+[gd_scene load_steps=7 format=3 uid="uid://dyqff45nfg8jm"]
 
 [ext_resource type="Script" path="res://Scenes/Boss.gd" id="1_6d2k4"]
 [ext_resource type="Texture2D" uid="uid://bpjymtqtm2oct" path="res://Assets/Enemies/Boss Wizard.png" id="1_p33ic"]
+[ext_resource type="AudioStream" uid="uid://gnh15yf4ydlb" path="res://Assets/Sound Effects/magical-spell-cast-190272.mp3" id="3_vuu1l"]
+[ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="4_j4lle"]
+
+[sub_resource type="Theme" id="Theme_yogvq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c467a"]
+bg_color = Color(0.784314, 0, 0, 1)
 
 [node name="Boss" type="StaticBody2D"]
+collision_layer = 2
 script = ExtResource("1_6d2k4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -13,5 +21,23 @@ polygon = PackedVector2Array(-53, -243, 55, -247, 208, 180, 163, 242, -155, 244,
 texture = ExtResource("1_p33ic")
 
 [node name="Boss Ability Timer" type="Timer" parent="."]
+autostart = true
 
+[node name="Magic Cast" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vuu1l")
+
+[node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("target")]
+offset_left = -79.0
+offset_top = 135.0
+offset_right = 79.0
+offset_bottom = 152.0
+theme = SubResource("Theme_yogvq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_c467a")
+step = 1.0
+show_percentage = false
+script = ExtResource("4_j4lle")
+target = NodePath("..")
+
+[connection signal="damage_taken" from="." to="." method="_on_damage_taken"]
+[connection signal="damage_taken" from="." to="HealthBar" method="_on_boss_damage_taken"]
 [connection signal="timeout" from="Boss Ability Timer" to="." method="_on_boss_ability_timer_timeout"]
