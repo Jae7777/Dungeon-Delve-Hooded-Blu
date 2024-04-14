@@ -9,9 +9,9 @@ func _process(_delta):
 			if body.has_method("take_damage"):
 				body.take_damage(damage)
 
-func _on_hitbox_body_entered(body):
+
+func _on_body_entered(body):
 	bodies_in_hitbox[body] = null
 
-
-func _on_hitbox_body_exited(body):
+func _on_body_exited(body):
 	bodies_in_hitbox.erase(body)

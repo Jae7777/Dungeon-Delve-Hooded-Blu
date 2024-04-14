@@ -16,7 +16,8 @@ func _process(_delta):
 func spawnEnemies():
 	for i in range(numEnemiesToSpawn):
 		var spawnPosition = calculateRandomSpawnPosition()
-		var enemy = enemy_scene.instantiate()
+		var enemy = enemy_scene.instantiate().with_data(randi_range(0, 2))
+		print(enemy)
 		enemy.position = spawnPosition
 		add_child(enemy)
 

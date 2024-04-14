@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxh5ymhokun40"]
+
+[ext_resource type="Script" path="res://Scenes/heart_crystal.gd" id="1_33xcf"]
+[ext_resource type="Texture2D" uid="uid://bf3lfqipe32qa" path="res://Assets/Player/Heart Crystal.png" id="2_mxfvm"]
+
+[node name="HeartCrystal" type="Area2D"]
+scale = Vector2(0.3, 0.3)
+collision_layer = 16
+script = ExtResource("1_33xcf")
+
+[node name="HeartCrystal" type="Sprite2D" parent="."]
+position = Vector2(-2, 6)
+texture = ExtResource("2_mxfvm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(21, 114, -27, 114, -114, 23, -125, -9, -125, -75, -85, -114, -34, -114, -24, -110, -11, -93, 1, -69, 12, -93, 29, -98, 35, -114, 82, -114, 115, -88, 126, -69, 126, 4)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

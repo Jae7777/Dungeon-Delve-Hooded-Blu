@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://byv3gagsjg134"]
+[gd_scene load_steps=19 format=3 uid="uid://byv3gagsjg134"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh1p2"]
 [ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="2_aqtp5"]
@@ -10,9 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://csfumidty7mkt" path="res://Assets/Weapons/Sword Swing 1.png" id="8_lpxf2"]
 [ext_resource type="Script" path="res://Scenes/Weapon.gd" id="8_xc4v3"]
 [ext_resource type="Texture2D" uid="uid://cmm5nst0ffowp" path="res://Assets/Weapons/Sword Swing 2.png" id="9_3chum"]
+[ext_resource type="Texture2D" uid="uid://dr2rt164af634" path="res://Assets/Weapons/Sword.png" id="9_x65s3"]
 [ext_resource type="Script" path="res://Scenes/SwordAnimation.gd" id="10_2ljhd"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsy2w"]
+[ext_resource type="Texture2D" uid="uid://ca0hj5xgv57bs" path="res://Assets/Weapons/Sword Swing 3.png" id="12_kbtte"]
+[ext_resource type="Texture2D" uid="uid://cx27tuedewvaq" path="res://Assets/Weapons/Sword Swing 4.png" id="13_wb3co"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xepep"]
 animations = [{
@@ -37,17 +38,11 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8unv"]
-size = Vector2(236.547, 508.124)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rcrk2"]
-load_path = "res://.godot/imported/Sword.png-c2168624287cc99302098ddad4549040.ctex"
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_1acr5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_rcrk2")
+"texture": ExtResource("9_x65s3")
 }, {
 "duration": 1.0,
 "texture": ExtResource("8_lpxf2")
@@ -56,20 +51,27 @@ animations = [{
 "texture": ExtResource("9_3chum")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_rcrk2")
+"texture": ExtResource("12_kbtte")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_wb3co")
 }],
 "loop": true,
 "name": &"Swing",
 "speed": 20.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
-visibility_layer = 31
-scale = Vector2(0.25, 0.25)
-script = ExtResource("1_rh1p2")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8unv"]
+size = Vector2(236.547, 508.124)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_nsy2w")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmgbv"]
+radius = 92.0
+height = 456.0
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
+collision_mask = 8
+script = ExtResource("1_rh1p2")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1, 1.02703)
@@ -79,27 +81,27 @@ frame = 1
 frame_progress = 0.45941
 script = ExtResource("7_0a1af")
 
-[node name="Weapon" type="Node2D" parent="PlayerAnimation"]
+[node name="Hitbox" type="Area2D" parent="PlayerAnimation"]
 position = Vector2(80, 120.736)
 scale = Vector2(1, 0.973681)
+collision_mask = 2
 script = ExtResource("8_xc4v3")
 
-[node name="Hitbox" type="Area2D" parent="PlayerAnimation/Weapon"]
-position = Vector2(284, -160)
-scale = Vector2(1.24353, -1.34425)
-collision_layer = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnimation/Weapon/Hitbox"]
-position = Vector2(0, 26.7808)
-scale = Vector2(1.25922, 0.819857)
-shape = SubResource("RectangleShape2D_x8unv")
-
-[node name="SwordAnimation" type="AnimatedSprite2D" parent="PlayerAnimation/Weapon"]
-position = Vector2(212, -212)
+[node name="SwordAnimation" type="AnimatedSprite2D" parent="PlayerAnimation/Hitbox"]
+position = Vector2(320, -40)
 scale = Vector2(1.98814, 1.9875)
 sprite_frames = SubResource("SpriteFrames_1acr5")
 animation = &"Swing"
 script = ExtResource("10_2ljhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnimation/Hitbox"]
+position = Vector2(284, -196)
+scale = Vector2(1.56588, -1.10209)
+shape = SubResource("RectangleShape2D_x8unv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_lmgbv")
 
 [node name="TImers" type="Node" parent="."]
 
@@ -110,7 +112,7 @@ one_shot = true
 [node name="HitTimer" type="Timer" parent="TImers"]
 one_shot = true
 
-[connection signal="body_entered" from="PlayerAnimation/Weapon/Hitbox" to="PlayerAnimation/Weapon" method="_on_hitbox_body_entered"]
-[connection signal="body_exited" from="PlayerAnimation/Weapon/Hitbox" to="PlayerAnimation/Weapon" method="_on_hitbox_body_exited"]
-[connection signal="timeout" from="TImers/AttackTimer" to="PlayerAnimation/Weapon/SwordAnimation" method="_on_timer_timeout"]
+[connection signal="body_entered" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_body_entered"]
+[connection signal="body_exited" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_body_exited"]
+[connection signal="timeout" from="TImers/AttackTimer" to="PlayerAnimation/Hitbox/SwordAnimation" method="_on_timer_timeout"]
 [connection signal="timeout" from="TImers/HitTimer" to="." method="_on_hit_timer_timeout"]

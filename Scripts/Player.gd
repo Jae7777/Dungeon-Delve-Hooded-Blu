@@ -5,7 +5,7 @@ var SPEED = 400
 var face_direction = Vector2()
 var is_vulnerable
 var max_health = 10
-var health = max_health
+var health = max_health - 50
 
 func _ready():
 	is_vulnerable = true
@@ -25,6 +25,12 @@ func hit():
 		health -= 10
 	if health <= 0:
 		queue_free()
+
+func heal(amount):
+	health += amount
+	if health > max_health:
+		health = max_health
+	print("curr health:" + str(health))
 
 func _on_hit_timer_timeout():
 	is_vulnerable = true
