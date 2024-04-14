@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var start
 var player
 var spawnRadius = 1000
 var wave_size = 10
@@ -26,8 +26,6 @@ var waves_defeated
 func _ready():
 	$"../Sountrack".play()
 	player = $"../Player"
-	
-	spawnEnemies()
 	waves_defeated = 0
 	
 func spawnObjects():
@@ -58,7 +56,7 @@ func _process(_delta):
 	if get_child_count() == 0:
 		spawnEnemies()
 		waves_defeated += 1
-	if waves_defeated == 1:
+	if waves_defeated == 2:
 		$"../Sountrack".stop()
 
 func spawnEnemies():
@@ -85,6 +83,10 @@ func calculateRandomSpawnPosition():
 	var yOffset = distance * sin(angle)
 	var spawnPosition = player.position + Vector2(xOffset, yOffset)
 	if (spawnPosition.x < -20 * 16 or spawnPosition.y > 50 * 16 or spawnPosition.x > 80 * 16 or spawnPosition.y < -20 * 16):
-		spawnPosition = Vector2(1200, 1200)
+		spawnPosition = Vector2(randf_range(-128, 256), randf_range(-128, 256))
 	return spawnPosition
 
+
+
+func _on_timer_timeout():
+	var start = true
