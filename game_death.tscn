@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brwagt2kyfkt"]
 
+[ext_resource type="Script" path="res://game_death.gd" id="1_hf1ug"]
 [ext_resource type="Texture2D" uid="uid://cyvswaebf3g4r" path="res://Assets/Game Over.png" id="1_qa4er"]
-[ext_resource type="Script" path="res://RestartButton.gd" id="2_61tuq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7mlpk"]
 
@@ -16,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_hf1ug")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -27,19 +28,21 @@ grow_vertical = 2
 texture = ExtResource("1_qa4er")
 expand_mode = 1
 
-[node name="RestartButton" type="Button" parent="."]
-layout_mode = 2
-offset_left = 476.0
-offset_top = 388.0
-offset_right = 516.0
-offset_bottom = 396.0
-scale = Vector2(4.78042, 5.32)
-script = ExtResource("2_61tuq")
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 505.0
+offset_top = 376.0
+offset_right = 570.0
+offset_bottom = 450.0
+scale = Vector2(2, 2)
 
-[node name="BackToMainMenuButton" type="Button" parent="."]
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-offset_left = 476.0
-offset_top = 460.0
-offset_right = 516.0
-offset_bottom = 468.0
-scale = Vector2(4.78042, 5.32)
+text = "Restart"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"

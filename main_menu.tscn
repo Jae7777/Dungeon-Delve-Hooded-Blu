@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://61xdwero78yo"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_radb5"]
+[ext_resource type="Texture2D" uid="uid://dj55uj40rudcq" path="res://Assets/Game Menu.png" id="1_tdxc5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0cer3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8xiiy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ilsgx"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_radb5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tdxc5")
+expand_mode = 1
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 56.0386
+offset_top = -59.9454
+offset_right = 191.039
+offset_bottom = -1.94538
+rotation = 0.204237
+pivot_offset = Vector2(-431.747, -29.9042)
+mouse_default_cursor_shape = 2
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0cer3")
+
+[node name="CreditsButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 96.0
+rotation = 0.204237
+pivot_offset = Vector2(-431.747, -29.9042)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8xiiy")
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 116.0
+offset_right = 197.0
+offset_bottom = 174.0
+rotation = 0.204237
+pivot_offset = Vector2(-431.747, -29.9042)
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ilsgx")
