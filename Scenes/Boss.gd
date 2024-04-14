@@ -4,7 +4,7 @@ const MOVE_SPEED = 150
 signal damage_taken()
 var move_direction = Vector2()
 var target = null
-var max_health = 80
+var max_health = 240
 var current_health = max_health
 var damage = 10
 var can_attack = true
