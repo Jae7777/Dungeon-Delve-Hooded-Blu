@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpp5jgq0yy2ac"]
+[gd_scene load_steps=9 format=3 uid="uid://dpp5jgq0yy2ac"]
 
 [ext_resource type="Script" path="res://Scenes/Fire Golem.gd" id="1_fios0"]
 [ext_resource type="Texture2D" uid="uid://dbgagivsi72y8" path="res://Assets/Enemies/Flame_enemy.png" id="2_qcq53"]
 [ext_resource type="Texture2D" uid="uid://bdi5d3qilre7a" path="res://Assets/Enemies/Flame_enemy_shoot_1.png" id="3_i68sl"]
 [ext_resource type="Texture2D" uid="uid://bfamwlfb7w2yx" path="res://Assets/Enemies/Flame_enemy_shoot_2.png" id="4_7i1wp"]
+[ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="5_1qpql"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d172r"]
 animations = [{
@@ -22,20 +23,40 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Fire Golem" type="Area2D"]
+[sub_resource type="Theme" id="Theme_w3kr4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvt4e"]
+bg_color = Color(0.784314, 0, 0, 1)
+
+[node name="FireGolem" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_fios0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(968, 845)
 sprite_frames = SubResource("SpriteFrames_d172r")
 frame = 1
 frame_progress = 0.631341
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-964, -838)
 polygon = PackedVector2Array(926, 741, 992, 729, 1008, 905, 971, 930, 921, 911)
 
 [node name="Timers" type="Node" parent="."]
 
 [node name="DamageTimer" type="Timer" parent="Timers"]
 
+[node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("target")]
+offset_left = -79.0
+offset_top = 135.0
+offset_right = 79.0
+offset_bottom = 152.0
+theme = SubResource("Theme_w3kr4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kvt4e")
+step = 1.0
+show_percentage = false
+script = ExtResource("5_1qpql")
+target = NodePath("..")
+
+[connection signal="damage_taken" from="." to="HealthBar" method="_on_fire_golem_damage_taken"]
 [connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_timer_timeout"]

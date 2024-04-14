@@ -15,3 +15,11 @@ func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index)
 
 func _on_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	bodies_in_hitbox.erase(area)
+
+
+func _on_body_entered(body):
+	bodies_in_hitbox[body] = null
+
+
+func _on_body_exited(body):
+	bodies_in_hitbox.erase(body)

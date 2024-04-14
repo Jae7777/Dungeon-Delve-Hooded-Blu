@@ -74,10 +74,6 @@ wait_time = 0.7
 wait_time = 0.8
 one_shot = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="damage_taken" from="." to="HealthBar" method="_on_ghost_enemy_damage_taken"]
 [connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="Timers/DeathAnimationTImer" to="GhostAnimation" method="_on_death_animation_t_imer_timeout"]
