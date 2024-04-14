@@ -28,15 +28,14 @@ func _process(delta):
 		queue_free()
 		
 	var orb = orb.instantiate()    
-	add_child(orb)
-	orb.direction = global_position.direction_to(target_position)
 	orb.global_position = Vector2(global_position.x, global_position. y - 200)
+	orb.direction = (orb.position - target.position).normalized()
+	add_child(orb)
 	
 	if can_attack and is_in_attack_range:
 		can_attack = false
 		target.take_damage(damage)
 		$Timers/DamageTimer.start()
-
 
 func _on_attack_timer_timeout():
 	can_attack = true

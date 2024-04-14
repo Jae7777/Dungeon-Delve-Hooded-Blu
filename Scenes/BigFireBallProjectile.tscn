@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://yxjcx3mwwgju"]
+[gd_scene load_steps=3 format=3 uid="uid://cbh5swl37744t"]
 
+[ext_resource type="Script" path="res://Scenes/BigFireBallProjectile.gd" id="1_g7hs4"]
 [ext_resource type="Texture2D" uid="uid://bwuiuea7er8o0" path="res://Assets/Enemies/Projectile Fireball.png" id="1_owjs8"]
 
 [node name="BigFireBallProjectile" type="Area2D"]
+script = ExtResource("1_g7hs4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_owjs8")
