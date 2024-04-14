@@ -1,12 +1,13 @@
 extends StaticBody2D
 
 signal damage_taken()
+signal attack()
 signal on_death()
 var target = null
 var max_health = 15
 var current_health = max_health
 var damage = 0
-var can_attack
+var can_attack = true
 var heart_crystal_scene: PackedScene = preload("res://Scenes/heart_crystal.tscn")
 
 func _ready():
@@ -23,7 +24,8 @@ func _process(delta):
 		
 	if can_attack:
 		can_attack = false
-		
+		$Timers/AttackCooldown.start()
+		attack.emit()
 		$Timers/DamageTimer.start()
 
 func take_damage(amount):
@@ -31,10 +33,10 @@ func take_damage(amount):
 	damage_taken.emit()
 	print("goloem", current_health)
 
-
 func _on_damage_timer_timeout():
 	can_attack = true
 
 
-func _on_timer_timeout():
+
+func _on_attack_cooldown_timeout():
 	pass # Replace with function body.
