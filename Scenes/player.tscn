@@ -48,15 +48,15 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_nkxap")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": ExtResource("8_15ccw")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": ExtResource("9_ryulh")
 }],
 "loop": true,
 "name": &"dash",
-"speed": 2.0
+"speed": 0.1
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1acr5"]
