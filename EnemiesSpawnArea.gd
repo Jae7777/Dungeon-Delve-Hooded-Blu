@@ -15,6 +15,10 @@ var bosses = [
 ]
 
 var object = [
+	preload("res://Scenes/SpeedUp.tscn"), 
+	preload("res://Scenes/Health_Up.tscn"), 
+	preload("res://Scenes/Attack_up.tscn"), 
+	preload("res://Scenes/heart_crystal.tscn"),
 	preload("res://Scenes/chest.tscn")
 ]
 var waves_defeated
@@ -22,8 +26,32 @@ var waves_defeated
 func _ready():
 	$"../Sountrack".play()
 	player = $"../Player"
+	
 	spawnEnemies()
 	waves_defeated = 0
+	
+func spawnObjects():
+	var speedUp = object[1].instantiate()
+	speedUp.position = Vector2(0, 0)
+	add_child(speedUp)
+	speedUp.position = Vector2(0, 128)
+	add_child(speedUp)
+	var pwrup = object[2].instantiate()
+	pwrup.position = Vector2(128, 0)
+	add_child(pwrup)
+	var pwrup2 = object[3].instantiate()
+	pwrup2.position = Vector2(-128, 0)
+	add_child(pwrup2)
+	var pwrup3 = object[3].instantiate()
+	pwrup3.position = Vector2(0, 128)
+	add_child(pwrup3)
+	for i in range(wave_size):
+		var _spawnPosition = calculateRandomSpawnPosition()
+		var chest = object[0].instantiate()
+		chest.position = Vector2(0 + (i * 64), 0 + (i *64))
+		add_child(chest)	
+			
+	
 
 	
 func _process(_delta):
@@ -35,6 +63,7 @@ func _process(_delta):
 
 func spawnEnemies():
 	if waves_defeated == 1:
+		$"../Boss Laugh".play()
 		$"../BossMusic".play()
 		var boss = bosses[0].instantiate()
 		boss.position = Vector2(0, 0)
@@ -42,9 +71,7 @@ func spawnEnemies():
 		pass
 		#increment waves defeated when boss ded
 	else:
-		var chest = object[0].instantiate()
-		chest.position = Vector2(0, 0)
-		add_child(chest)		
+	
 		for i in range(wave_size):
 			var spawnPosition = calculateRandomSpawnPosition()
 			var enemy = enemies[randi_range(0, enemies.size() - 1)].instantiate().with_data(randi_range(0, 2))

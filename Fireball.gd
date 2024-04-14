@@ -3,22 +3,20 @@ extends Area2D
 var speed = 10
 var direction = Vector2.ZERO
 var is_in_attack_range = false
-var damage = 10
+var damage = 1
 var target
 
 func _ready():
 	target = $"../../../Player"
 
-func _process(delta):
+func _process(_delta):
 	
 	if is_in_attack_range:
 		target.take_damage(damage)
-	$Timer.start()
-		
+		$Timer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position += direction * speed
-
 
 func _on_timer_timeout():
 	queue_free()

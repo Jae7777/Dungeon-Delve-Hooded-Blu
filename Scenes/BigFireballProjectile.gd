@@ -6,16 +6,16 @@ var is_in_attack_range = false
 var damage = 10
 @onready var target = $"../Player"
 
-func _process(delta):
+func _process(_delta):
 	
 	if is_in_attack_range:
 		target.take_damage(damage)
 		$Timers/DamageTimer.start()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position += direction * speed
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(_body):
 	is_in_attack_range = true
 	
 func _on_area_2d_body_exited(_body):

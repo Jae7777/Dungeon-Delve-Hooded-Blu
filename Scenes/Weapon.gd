@@ -10,11 +10,11 @@ func _process(_delta):
 			if body.has_method("take_damage"):
 				body.take_damage(damage)
 
-func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+func _on_area_shape_entered(_area_rid, area, _area_shape_index, _local_shape_index):
 	bodies_in_hitbox[area] = null
 
 
-func _on_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+func _on_area_shape_exited(_area_rid, area, _area_shape_index, _local_shape_index):
 	bodies_in_hitbox.erase(area)
 
 

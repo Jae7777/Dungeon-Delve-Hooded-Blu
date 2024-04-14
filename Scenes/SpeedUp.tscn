@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6a14b3fabww3"]
+
+[ext_resource type="Script" path="res://Scenes/SpeedUp.gd" id="1_rfe8q"]
+[ext_resource type="Texture2D" uid="uid://mgq08ustpkkj" path="res://Assets/Player/Speed_Up.png" id="2_6ukw2"]
+
+[node name="SpeedUp" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_rfe8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6ukw2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-32, -31, 31, -32, 32, 31, -32, 32)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
