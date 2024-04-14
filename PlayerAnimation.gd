@@ -14,9 +14,13 @@ func _process(_delta):
 		scale.x = abs(scale.x) * -1
 	else:
 		scale.x = abs(scale.x)
-	
 	if Input.is_action_pressed("MoveDown") or Input.is_action_pressed("MoveRight") or Input.is_action_pressed("MoveLeft") or Input.is_action_pressed("MoveUp"):
 		play("Walk")
 		$Walk_Sound.play()
 	else:
 		stop()
+
+
+func _on_player_dash():
+	play("dash")
+

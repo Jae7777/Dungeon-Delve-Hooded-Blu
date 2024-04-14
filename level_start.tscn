@@ -170,3 +170,7 @@ script = ExtResource("7_mnbgp")
 
 [node name="Sountrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_3d6t2")
+
+[node name="Projectiles" type="Node" parent="."]
+
+[node name="Soundtracks" type="Node" parent="."]

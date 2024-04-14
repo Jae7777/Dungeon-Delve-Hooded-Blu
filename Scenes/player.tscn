@@ -1,15 +1,18 @@
-[gd_scene load_steps=25 format=3 uid="uid://byv3gagsjg134"]
+[gd_scene load_steps=28 format=3 uid="uid://byv3gagsjg134"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh1p2"]
 [ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="2_aqtp5"]
+[ext_resource type="Texture2D" uid="uid://clxltbsidgcjp" path="res://Assets/Player/Character Resting Frame.png" id="2_nkxap"]
 [ext_resource type="Texture2D" uid="uid://dbgvbpq140at0" path="res://Assets/Player/Down.png" id="3_ghd7n"]
 [ext_resource type="Texture2D" uid="uid://c8lx7ifjxihdo" path="res://Assets/Player/Pass.png" id="4_8m04j"]
 [ext_resource type="Texture2D" uid="uid://bmqtxaubehgek" path="res://Assets/Player/Up.png" id="5_o7kuh"]
 [ext_resource type="Texture2D" uid="uid://bainqt7emi6gv" path="res://Assets/Player/Contact 2.png" id="6_iuy2e"]
 [ext_resource type="Script" path="res://PlayerAnimation.gd" id="7_0a1af"]
+[ext_resource type="Texture2D" uid="uid://cxt636dxa4jew" path="res://Assets/Player/Dash 1.png" id="8_15ccw"]
 [ext_resource type="Texture2D" uid="uid://csfumidty7mkt" path="res://Assets/Weapons/Sword Swing 1.png" id="8_lpxf2"]
 [ext_resource type="Script" path="res://Scenes/Weapon.gd" id="8_xc4v3"]
 [ext_resource type="Texture2D" uid="uid://cmm5nst0ffowp" path="res://Assets/Weapons/Sword Swing 2.png" id="9_3chum"]
+[ext_resource type="Texture2D" uid="uid://bvbv5vxlfyaak" path="res://Assets/Player/Dash 2.png" id="9_ryulh"]
 [ext_resource type="Texture2D" uid="uid://dr2rt164af634" path="res://Assets/Weapons/Sword.png" id="9_x65s3"]
 [ext_resource type="Script" path="res://Scenes/SwordAnimation.gd" id="10_2ljhd"]
 [ext_resource type="Texture2D" uid="uid://ca0hj5xgv57bs" path="res://Assets/Weapons/Sword Swing 3.png" id="12_kbtte"]
@@ -40,6 +43,20 @@ animations = [{
 "loop": true,
 "name": &"Walk",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nkxap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_15ccw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ryulh")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 2.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1acr5"]
@@ -85,9 +102,7 @@ script = ExtResource("1_rh1p2")
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1, 1.02703)
 sprite_frames = SubResource("SpriteFrames_xepep")
-animation = &"Walk"
-frame = 1
-frame_progress = 0.45941
+animation = &"dash"
 script = ExtResource("7_0a1af")
 
 [node name="Hitbox" type="Area2D" parent="PlayerAnimation"]
@@ -119,6 +134,9 @@ volume_db = -5.0
 [node name="Sword" type="AudioStreamPlayer" parent="PlayerAnimation"]
 stream = ExtResource("17_lhrhr")
 
+[node name="Marker2D" type="Marker2D" parent="PlayerAnimation"]
+position = Vector2(144, -128.526)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_lmgbv")
@@ -148,6 +166,7 @@ script = ExtResource("15_lfsra")
 target = NodePath("..")
 
 [connection signal="damage_taken" from="." to="HealthBar" method="_on_player_damage_taken"]
+[connection signal="dash" from="." to="PlayerAnimation" method="_on_player_dash"]
 [connection signal="healing" from="." to="HealthBar" method="_on_player_healing"]
 [connection signal="area_shape_entered" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_area_shape_entered"]
 [connection signal="area_shape_exited" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_area_shape_exited"]
