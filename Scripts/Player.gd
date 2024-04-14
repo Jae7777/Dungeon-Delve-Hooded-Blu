@@ -21,6 +21,7 @@ func _process(_delta):
 	get_input(face_direction)
 	set_velocity(velocity)
 	move_and_slide()
+	
 	if Input.is_action_just_pressed("Dash") and can_dash:
 		can_dash = false
 		dash.emit()
@@ -46,7 +47,7 @@ func heal(amount):
 		current_health = max_health
 
 func take_damage(amount):
-	$PlayerAnimation/OOF.play()
+	$PlayerAnimation/OOF.play();
 	current_health -= amount
 	print("taking damage")
 	damage_taken.emit()

@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-const MOVE_SPEED = 300
+const MOVE_SPEED = 150
 var move_direction = Vector2()
 var target = null
 var max_health = 400
@@ -10,6 +10,7 @@ var can_attack = true
 var is_in_attack_range = false
 var fireball_scene = preload ("res://Scenes/fireball.tscn")
 var orb = preload("res://Scenes/BigFireBallProjectile.tscn")
+var boss_ability_up = true
 
 
 
@@ -26,11 +27,13 @@ func _process(delta):
 	position += velocity * delta
 	if current_health <= 0:
 		queue_free()
-		
-	var orb = orb.instantiate()    
-	add_child(orb)
-	orb.direction = global_position.direction_to(target_position)
-	orb.global_position = Vector2(global_position.x, global_position. y - 200)
+	if(boss_ability_up == true):
+		var orb = orb.instantiate()    
+		add_child(orb)
+		orb.direction = global_position.direction_to(target_position)
+		orb.global_position = Vector2(global_position.x, global_position. y - 200)
+		boss_ability_up = false
+		$"Boss Ability Timer".start()
 	
 	if can_attack and is_in_attack_range:
 		can_attack = false
@@ -51,3 +54,7 @@ func _on_body_exited(_body):
 
 func _on_damage_timer_timeout():
 	can_attack = true
+
+
+func _on_boss_ability_timer_timeout():
+	boss_ability_up = true

@@ -11,3 +11,7 @@ polygon = PackedVector2Array(-53, -243, 55, -247, 208, 180, 163, 242, -155, 244,
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_p33ic")
+
+[node name="Boss Ability Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Boss Ability Timer" to="." method="_on_boss_ability_timer_timeout"]

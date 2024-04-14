@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7jjt07rsew70"
+path="res://.godot/imported/random-boss-fight-music-65460.mp3-9cd9065fdb0616092f84d275b574dcf7.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/random-boss-fight-music-65460.mp3"
+dest_files=["res://.godot/imported/random-boss-fight-music-65460.mp3-9cd9065fdb0616092f84d275b574dcf7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

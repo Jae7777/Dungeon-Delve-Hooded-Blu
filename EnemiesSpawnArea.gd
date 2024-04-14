@@ -6,7 +6,8 @@ var spawnRadius = 1000
 var wave_size = 10
 var enemies = [
 	preload("res://Scenes/ghost_enemy.tscn"),
-	preload("res://Scenes/fire_golem.tscn")
+	preload("res://Scenes/fire_golem.tscn"),
+	preload("res://Scenes/chest.tscn")
 ]
 var bosses = [
 	preload("res://Scenes/Boss.tscn")
@@ -24,14 +25,12 @@ func _process(_delta):
 	if get_child_count() == 0:
 		spawnEnemies()
 		waves_defeated += 1
-	if waves_defeated == 3:
+	if waves_defeated == 1:
 		$"../Sountrack".stop()
-		$"../BossMusic".play()
-		
-	
 
 func spawnEnemies():
-	if waves_defeated == 0:
+	if waves_defeated == 1:
+		$"../BossMusic".play()
 		var boss = bosses[0].instantiate()
 		boss.position = Vector2(0, 0)
 		add_child(boss)

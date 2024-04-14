@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://r1s40ce738ln"]
+
+[ext_resource type="Script" path="res://Scenes/Attack_up.gd" id="1_x78jn"]
+[ext_resource type="Texture2D" uid="uid://4q3m5mjyv32" path="res://Assets/Player/Attack_Up.png" id="2_05f35"]
+
+[node name="AttackUp" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_x78jn")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-30, -31, 30, -31, 31, 31, -31, 31)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_05f35")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
