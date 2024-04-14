@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ykb4k34fq5i"]
+
+[ext_resource type="Texture2D" uid="uid://d0say8101v2h6" path="res://Assets/Enemies/Death Smoke.png" id="1_ptw4x"]
+[ext_resource type="Texture2D" uid="uid://e5sxblwem138" path="res://Assets/Enemies/Death_Smoke_Flipped.png" id="2_c2cuq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3vjw1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ptw4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c2cuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_ptw4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c2cuq")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}]
+
+[node name="Death Animation" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3vjw1")
+animation = &"death"
+frame_progress = 0.797851

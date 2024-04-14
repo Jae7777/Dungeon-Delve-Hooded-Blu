@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Rpi Crawler"
-run/main_scene="res://level.tscn"
+run/main_scene="res://level_start.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 

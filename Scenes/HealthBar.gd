@@ -11,3 +11,6 @@ func set_health_bar():
 
 func _on_player_damage_taken():
 	set_health_bar()
+
+func _on_ghost_enemy_damage_taken():
+	set_health_bar()

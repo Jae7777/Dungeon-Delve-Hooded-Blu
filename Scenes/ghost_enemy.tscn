@@ -51,7 +51,6 @@ shape = SubResource("CapsuleShape2D_s3yc2")
 [node name="GhostAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kx5ha")
 animation = &"Float"
-frame_progress = 0.993737
 script = ExtResource("4_tny5p")
 
 [node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("target")]
@@ -71,7 +70,14 @@ target = NodePath("..")
 [node name="DamageTimer" type="Timer" parent="Timers"]
 wait_time = 0.7
 
+[node name="DeathAnimationTImer" type="Timer" parent="Timers"]
+wait_time = 0.8
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="damage_taken" from="." to="HealthBar" method="_on_ghost_enemy_damage_taken"]
 [connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Timers/DeathAnimationTImer" to="GhostAnimation" method="_on_death_animation_t_imer_timeout"]

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal player_attack(area)
 signal damage_taken()
+signal player_death()
 var SPEED = 400
 var face_direction = Vector2()
 var is_vulnerable
@@ -32,6 +33,8 @@ func take_damage(amount):
 	damage_taken.emit()
 	if current_health <= 0:
 		queue_free()
+		get_tree().change_scene_to_file("res://game_death.tscn")
+		
 
 func _on_hit_timer_timeout():
 	is_vulnerable = true

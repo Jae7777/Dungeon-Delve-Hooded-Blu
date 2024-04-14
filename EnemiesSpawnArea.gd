@@ -5,6 +5,7 @@ var player
 var spawnRadius = 100
 var numEnemiesToSpawn = 5
 var enemy_scene: PackedScene = preload("res://Scenes/ghost_enemy.tscn")
+var golem_scene: PackedScene = preload("res://Scenes/fire_golem.tscn")
 
 func _ready():
 	player = $"../Player"
@@ -17,9 +18,12 @@ func spawnEnemies():
 	for i in range(numEnemiesToSpawn):
 		var spawnPosition = calculateRandomSpawnPosition()
 		var enemy = enemy_scene.instantiate().with_data(randi_range(0, 2))
+		var golem = golem_scene.instantiate().with_data(randi_range(0, 20))
 		print(enemy)
 		enemy.position = spawnPosition
+		golem.position = spawnPosition
 		add_child(enemy)
+		add_child(golem)
 
 func calculateRandomSpawnPosition():
 	var angle = randf_range(0, 2 * PI)
