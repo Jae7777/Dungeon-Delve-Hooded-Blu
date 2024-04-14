@@ -18,7 +18,7 @@ func _ready():
 	player = $"../Player"
 	spawnEnemies()
 	waves_defeated = 0
-	
+
 	
 func _process(_delta):
 	if get_child_count() == 0:
@@ -27,6 +27,7 @@ func _process(_delta):
 	if waves_defeated == 3:
 		$"../Sountrack".stop()
 		$"../BossMusic".play()
+		
 	
 
 func spawnEnemies():
@@ -48,6 +49,6 @@ func calculateRandomSpawnPosition():
 	var yOffset = distance * sin(angle)
 	var spawnPosition = player.position + Vector2(xOffset, yOffset)
 	if (spawnPosition.x < -20 * 16 or spawnPosition.y > 50 * 16 or spawnPosition.x > 80 * 16 or spawnPosition.y < -20 * 16):
-		spawnPosition = Vector2(0, 0)
+		spawnPosition = Vector2(1200, 1200)
 	return spawnPosition
 

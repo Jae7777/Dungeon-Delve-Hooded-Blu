@@ -8,7 +8,7 @@ var target = null
 var max_health = 30
 var current_health = max_health
 var damage = 10
-var can_attack
+var can_attack = true
 var heart_crystal_scene: PackedScene = preload("res://Scenes/heart_crystal.tscn")
 var is_in_attack_range = false
 
@@ -20,12 +20,15 @@ func with_data(size):
 	match size:
 		0:
 			current_health = 10
+			damage = 10
 			scale = Vector2(0.33, 0.33)
 		1:
 			current_health = 20
+			damage = 15
 			scale =  Vector2(0.66, 0.66)
 		2:
 			current_health = 30
+			damage = 20
 			scale =  Vector2(1, 1)
 		_:
 			current_health = 20
@@ -39,7 +42,7 @@ func _process(delta):
 		var heart_crystal = heart_crystal_scene.instantiate().with_data(position)
 		$"../../Objects".add_child(heart_crystal)
 		queue_free()
-		
+	
 	if can_attack and is_in_attack_range:
 		can_attack = false
 		target.take_damage(damage)

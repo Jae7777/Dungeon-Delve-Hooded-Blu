@@ -15,6 +15,3 @@ texture = ExtResource("2_dpr1f")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Windslash"]
 polygon = PackedVector2Array(-34, -106, 18, -95, 64, -47, 76, 1, 65, 46, 27, 89, -15, 106)
-
-[node name="animation_timer" type="Timer" parent="."]
-wait_time = 0.4
