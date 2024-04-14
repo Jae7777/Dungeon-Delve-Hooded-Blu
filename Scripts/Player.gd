@@ -11,7 +11,7 @@ var face_direction = Vector2()
 var is_vulnerable
 var max_health = 100
 var current_health = max_health
-var fireball_scene = preload("res://fire_ball.tscn")
+var fireball_scene = preload("res://windslash.tscn")
 var can_dash = true
 
 func _ready():
@@ -46,6 +46,7 @@ func heal(amount):
 		current_health = max_health
 
 func take_damage(amount):
+	$PlayerAnimation/OOF.play()
 	current_health -= amount
 	print("taking damage")
 	damage_taken.emit()

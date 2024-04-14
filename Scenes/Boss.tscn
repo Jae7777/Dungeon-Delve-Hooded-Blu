@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyqff45nfg8jm"]
+
+[ext_resource type="Script" path="res://Scenes/Boss.gd" id="1_6d2k4"]
+[ext_resource type="Texture2D" uid="uid://bpjymtqtm2oct" path="res://Assets/Enemies/Boss Wizard.png" id="1_p33ic"]
+
+[node name="Boss" type="StaticBody2D"]
+script = ExtResource("1_6d2k4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-53, -243, 55, -247, 208, 180, 163, 242, -155, 244, -176, 210, -188, 57)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p33ic")

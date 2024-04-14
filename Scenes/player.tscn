@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://byv3gagsjg134"]
+[gd_scene load_steps=27 format=3 uid="uid://byv3gagsjg134"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh1p2"]
 [ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="2_aqtp5"]
@@ -19,8 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cx27tuedewvaq" path="res://Assets/Weapons/Sword Swing 4.png" id="13_wb3co"]
 [ext_resource type="AudioStream" uid="uid://cwbv14rt666yg" path="res://Assets/Sound Effects/concrete-footsteps-6752.mp3" id="15_1fbk2"]
 [ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="15_lfsra"]
-[ext_resource type="AudioStream" uid="uid://cd5q1xc8xokq2" path="res://Assets/Sound Effects/teleport-14639.mp3" id="16_aa70i"]
-[ext_resource type="AudioStream" uid="uid://dnqwmieq8534t" path="res://Assets/Sound Effects/sword-sound-2-36274.mp3" id="17_lhrhr"]
+[ext_resource type="AudioStream" uid="uid://bwfgiy81lf4ak" path="res://Assets/Sound Effects/ough-47202.mp3" id="19_57n22"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xepep"]
 animations = [{
@@ -128,11 +127,14 @@ stream = ExtResource("15_1fbk2")
 volume_db = 2.0
 
 [node name="Dash" type="AudioStreamPlayer" parent="PlayerAnimation"]
-stream = ExtResource("16_aa70i")
+stream = ExtResource("19_57n22")
 volume_db = -5.0
 
+[node name="OOF" type="AudioStreamPlayer" parent="PlayerAnimation"]
+stream = ExtResource("19_57n22")
+
 [node name="Sword" type="AudioStreamPlayer" parent="PlayerAnimation"]
-stream = ExtResource("17_lhrhr")
+stream = ExtResource("19_57n22")
 
 [node name="Marker2D" type="Marker2D" parent="PlayerAnimation"]
 position = Vector2(144, -128.526)
@@ -148,6 +150,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="HitTimer" type="Timer" parent="TImers"]
+wait_time = 1.5
 one_shot = true
 
 [node name="DashTimer" type="Timer" parent="TImers"]

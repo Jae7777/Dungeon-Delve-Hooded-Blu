@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://yxjcx3mwwgju"]
+
+[ext_resource type="Texture2D" uid="uid://bwuiuea7er8o0" path="res://Assets/Enemies/Projectile Fireball.png" id="1_owjs8"]
+
+[node name="BigFireBallProjectile" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_owjs8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(1, -75, -75, 3, 4, 82, 83, 2)

@@ -9,7 +9,7 @@ var enemies = [
 	preload("res://Scenes/fire_golem.tscn")
 ]
 var bosses = [
-	#preload()
+	preload("res://Scenes/Boss.tscn")
 ]
 var waves_defeated
 
@@ -31,8 +31,10 @@ func _process(_delta):
 	
 
 func spawnEnemies():
-	if waves_defeated == 3:
-		
+	if waves_defeated == 0:
+		var boss = bosses[0].instantiate()
+		boss.position = Vector2(0, 0)
+		add_child(boss)
 		pass
 		#increment waves defeated when boss ded
 	else:
