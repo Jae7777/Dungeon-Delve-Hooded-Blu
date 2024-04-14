@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://chi21ltv51rio"]
+
+[ext_resource type="Script" path="res://Scenes/health_up.gd" id="1_lnbd7"]
+[ext_resource type="Texture2D" uid="uid://bt6jw8byjgogq" path="res://Assets/Player/Health_Up.png" id="2_hmsa5"]
+
+[node name="HealthUp" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_lnbd7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-30, -31, 31, -31, 31, 31, -31, 31)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hmsa5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

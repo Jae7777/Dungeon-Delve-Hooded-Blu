@@ -9,11 +9,11 @@ var current_health = max_health
 var damage = 0
 var can_attack = true
 var speedup =preload("res://Scenes/SpeedUp.tscn")
-var hpup =preload("res://Scenes/Health_Up.tscn")
+var hpup =preload("res://Scenes/healthup.tscn")
 var hp = preload("res://Scenes/heart_crystal.tscn")
 var chest = preload("res://Scenes/chest.tscn")
-var atkup = preload("res://Scenes/Attack_up.tscn")
-var Fireball: PackedScene = preload("res://Scenes/Fireball.tscn")
+var atkup = preload("res://Scenes/attackup.tscn")
+var Fireball: PackedScene = preload("res://Scenes/fireball.tscn")
 
 func _ready():
 	target = $"../../Player"
@@ -28,17 +28,17 @@ func _process(_delta):
 			var atkup1 = atkup.instantiate().with_data(position)
 			$"../../Objects".add_child(atkup1)
 		elif(drop <= 2):
-			var hpup = hpup.instantiate().with_data(position)
-			$"../../Objects".add_child(hpup)
+			var hpup1 = hpup.instantiate().with_data(position)
+			$"../../Objects".add_child(hpup1)
 		elif(drop <= 3):
-			var speedup = speedup.instantiate().with_data(position)
-			$"../../Objects".add_child(speedup)
+			var speedup1 = speedup.instantiate().with_data(position)
+			$"../../Objects".add_child(speedup1)
 		elif(drop <= 4):
-			var hp = hp.instantiate().with_data(position)
-			$"../../Objects".add_child(hp)
+			var hp1 = hp.instantiate().with_data(position)
+			$"../../Objects".add_child(hp1)
 		elif(drop <= 5):
-			var chest = chest.instantiate().with_data(position)
-			$"../../Objects".add_child(chest)
+			var chest1 = chest.instantiate().with_data(position)
+			$"../../Objects".add_child(chest1)
 			
 		queue_free()
 		

@@ -49,7 +49,6 @@ func _process(delta):
 	if can_attack and is_in_attack_range:
 		can_attack = false
 		target.take_damage(damage)
-		$Timers/DamageTimer.start()
 
 func _on_attack_timer_timeout():
 	can_attack = true
@@ -64,10 +63,6 @@ func _on_body_entered(_body):
 
 func _on_body_exited(_body):
 	is_in_attack_range = false
-
-
-func _on_damage_timer_timeout():
-	can_attack = true
 
 
 func _on_boss_ability_timer_timeout():

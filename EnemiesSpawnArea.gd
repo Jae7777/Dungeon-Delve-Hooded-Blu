@@ -5,8 +5,8 @@ var player
 var spawnRadius = 1000
 var wave_size = 10
 var enemies = [
-	preload("res://Scenes/ghost_enemy.tscn"),
-	preload("res://Scenes/fire_golem.tscn"),
+	load("res://Scenes/ghost_enemy.tscn"),
+	load("res://Scenes/fire_golem.tscn"),
 	
 ]
 
@@ -16,8 +16,8 @@ var bosses = [
 
 var object = [
 	preload("res://Scenes/SpeedUp.tscn"), 
-	preload("res://Scenes/Health_Up.tscn"), 
-	preload("res://Scenes/Attack_up.tscn"), 
+	preload("res://Scenes/healthup.tscn"), 
+	preload("res://Scenes/attackup.tscn"), 
 	preload("res://Scenes/heart_crystal.tscn"),
 	preload("res://Scenes/chest.tscn")
 ]
@@ -59,7 +59,6 @@ func _process(_delta):
 
 func spawnEnemies():
 	if waves_defeated % 2 == 1:
-	if waves_defeated % 2 == 1:
 		$"../Boss Laugh".play()
 		$"../BossMusic".play()
 		var boss = bosses[0].instantiate()
@@ -78,17 +77,13 @@ func spawnEnemies():
 			add_child(enemy)
 
 func calculateRandomSpawnPosition():
-	var angle = randf_range(0, 2 * PI)
-	var distance = randf_range(200, spawnRadius)
-	var xOffset = distance * cos(angle)
-	var yOffset = distance * sin(angle)
+	#var angle = randf_range(0, 2 * PI)
+	#var distance = randf_range(200, spawnRadius)
+	#var xOffset = distance * cos(angle)
+	#var yOffset = distance * sin(angle)
 	var spawnPosition = Vector2(randf_range(player.position.x - 128, 80 * 16), randf_range(-20 * 16, player.position.y + 128))
 	#var spawnPosition = player.position + Vector2(xOffset, yOffset)
 	#if (spawnPosition.x < -20 * 16 or spawnPosition.y > 50 * 16 or spawnPosition.x > 80 * 16 or spawnPosition.y < -20 * 16):
 		#spawnPosition = Vector2(randf_range(-128, 256), randf_range(-128, 256))
 	return spawnPosition
 
-
-
-func _on_timer_timeout():
-	var start = true

@@ -2,7 +2,7 @@ extends Control
 var play_button
 var credits_button
 var quit_button
-var start_level = preload("res://level_start.tscn")
+var start_level = load("res://level_start.tscn")
 
 func _ready():
 	play_button = $PlayButton

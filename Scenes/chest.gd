@@ -4,7 +4,7 @@ signal damage_taken()
 var max_health = 30
 var current_health = max_health
 var powerups = [
-	preload("res://Scenes/Health_up.tscn")
+	preload("res://Scenes/healthup.tscn")
 ]
 
 func _process(_delta):
