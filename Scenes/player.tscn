@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://byv3gagsjg134"]
+[gd_scene load_steps=22 format=3 uid="uid://byv3gagsjg134"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh1p2"]
 [ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="2_aqtp5"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scenes/SwordAnimation.gd" id="10_2ljhd"]
 [ext_resource type="Texture2D" uid="uid://ca0hj5xgv57bs" path="res://Assets/Weapons/Sword Swing 3.png" id="12_kbtte"]
 [ext_resource type="Texture2D" uid="uid://cx27tuedewvaq" path="res://Assets/Weapons/Sword Swing 4.png" id="13_wb3co"]
+[ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="15_lfsra"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xepep"]
 animations = [{
@@ -68,6 +69,11 @@ size = Vector2(236.547, 508.124)
 radius = 92.0
 height = 456.0
 
+[sub_resource type="Theme" id="Theme_udpsj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yrd7"]
+bg_color = Color(0.784314, 0, 0, 1)
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)
 collision_mask = 8
@@ -84,7 +90,7 @@ script = ExtResource("7_0a1af")
 [node name="Hitbox" type="Area2D" parent="PlayerAnimation"]
 position = Vector2(80, 120.736)
 scale = Vector2(1, 0.973681)
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("8_xc4v3")
 
 [node name="SwordAnimation" type="AnimatedSprite2D" parent="PlayerAnimation/Hitbox"]
@@ -112,7 +118,20 @@ one_shot = true
 [node name="HitTimer" type="Timer" parent="TImers"]
 one_shot = true
 
-[connection signal="body_entered" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_body_entered"]
-[connection signal="body_exited" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_body_exited"]
+[node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("target")]
+offset_left = -80.0
+offset_top = 244.0
+offset_right = 78.0
+offset_bottom = 261.0
+theme = SubResource("Theme_udpsj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5yrd7")
+step = 1.0
+show_percentage = false
+script = ExtResource("15_lfsra")
+target = NodePath("..")
+
+[connection signal="damage_taken" from="." to="HealthBar" method="_on_player_damage_taken"]
+[connection signal="area_shape_entered" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_area_shape_entered"]
+[connection signal="area_shape_exited" from="PlayerAnimation/Hitbox" to="PlayerAnimation/Hitbox" method="_on_area_shape_exited"]
 [connection signal="timeout" from="TImers/AttackTimer" to="PlayerAnimation/Hitbox/SwordAnimation" method="_on_timer_timeout"]
 [connection signal="timeout" from="TImers/HitTimer" to="." method="_on_hit_timer_timeout"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4j3pq03yrono"]
+[gd_scene load_steps=11 format=3 uid="uid://c4j3pq03yrono"]
 
 [ext_resource type="Texture2D" uid="uid://bdlt17ydch4pq" path="res://Assets/Enemies/Ghost Enemy.png" id="1_ch60f"]
 [ext_resource type="Script" path="res://Scenes/ghost_enemy.gd" id="1_mxlhq"]
 [ext_resource type="Texture2D" uid="uid://bas04lh0bc12v" path="res://Assets/Enemies/Ghost Sway.png" id="3_y8ino"]
 [ext_resource type="Script" path="res://Scenes/GhostAnimation.gd" id="4_tny5p"]
+[ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="5_ms8im"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rrc41"]
 height = 33.4239
@@ -26,11 +27,15 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="GhostEnemy" type="CharacterBody2D"]
+[sub_resource type="Theme" id="Theme_whegf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkj3e"]
+bg_color = Color(0.784314, 0, 0, 1)
+
+[node name="GhostEnemy" type="Area2D"]
 light_mask = 2
 visibility_layer = 2
 collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_mxlhq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -49,11 +54,24 @@ animation = &"Float"
 frame_progress = 0.993737
 script = ExtResource("4_tny5p")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-offset_left = -39.0
-offset_top = 142.0
-offset_right = -35.0
-offset_bottom = 169.0
-rotation = -1.5708
-scale = Vector2(1.92, 3.12)
+[node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("target")]
+offset_left = -79.0
+offset_top = 135.0
+offset_right = 79.0
+offset_bottom = 152.0
+theme = SubResource("Theme_whegf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jkj3e")
+step = 1.0
 show_percentage = false
+script = ExtResource("5_ms8im")
+target = NodePath("..")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DamageTimer" type="Timer" parent="Timers"]
+wait_time = 0.7
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="damage_taken" from="." to="HealthBar" method="_on_ghost_enemy_damage_taken"]
+[connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
