@@ -31,7 +31,6 @@ func _process(delta):
 func take_damage(amount):
 	current_health -= amount
 	damage_taken.emit()
-	print("goloem", current_health)
 
 func _on_golem_animation_animation_finished():
 	var fire = Fireball.instantiate()	

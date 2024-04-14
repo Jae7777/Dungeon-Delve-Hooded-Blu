@@ -5,6 +5,7 @@ var damage = 10
 
 func _process(_delta):
 	if Input.is_action_just_pressed("PrimaryAction"):
+		$"../Sword".play()
 		for body in bodies_in_hitbox:
 			if body.has_method("take_damage"):
 				body.take_damage(damage)

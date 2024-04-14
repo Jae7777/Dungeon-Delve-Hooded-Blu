@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/concrete-footsteps-6752.mp3-40a366616c90d8f0f
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
