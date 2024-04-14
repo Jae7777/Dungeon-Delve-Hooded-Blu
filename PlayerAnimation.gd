@@ -17,5 +17,6 @@ func _process(_delta):
 	
 	if Input.is_action_pressed("MoveDown") or Input.is_action_pressed("MoveRight") or Input.is_action_pressed("MoveLeft") or Input.is_action_pressed("MoveUp"):
 		play("Walk")
+		$Walk_Sound.play()
 	else:
 		stop()

@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://crt4e3tj2d7f1"]
+[gd_scene load_steps=25 format=3 uid="uid://crt4e3tj2d7f1"]
 
+[ext_resource type="AudioStream" uid="uid://dgjwv4cfussme" path="res://Assets/Sound Effects/421886__b_sean__boss-battle.wav" id="1_4l1mr"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_30fap"]
 [ext_resource type="Texture2D" uid="uid://bcjnuphhk1jqm" path="res://Assets/Level/Mossy_Tile_Map.png" id="2_2fiww"]
 [ext_resource type="Texture2D" uid="uid://yguiqoygbyyw" path="res://Assets/Level/Blue Crystal.png" id="2_rql2w"]
@@ -12,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://byv3gagsjg134" path="res://Scenes/player.tscn" id="8_6a1y1"]
 [ext_resource type="Texture2D" uid="uid://14oh0lk5cw8y" path="res://Assets/Level/rock1.png" id="8_wfalj"]
 [ext_resource type="Texture2D" uid="uid://djo1wu0uv6vie" path="res://Assets/Level/rock2.png" id="9_6kr4a"]
+[ext_resource type="AudioStream" uid="uid://d4ic627sn18oa" path="res://Assets/Sound Effects/650313__lunarrrs__pixel-dungeon.wav" id="13_3d6t2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x20hd"]
 texture = ExtResource("2_rql2w")
@@ -141,6 +143,9 @@ sources/7 = SubResource("TileSetAtlasSource_47s3d")
 
 [node name="LevelStart" type="Node"]
 
+[node name="BossMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_4l1mr")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("1_30fap")
 
@@ -162,3 +167,6 @@ script = ExtResource("7_mnbgp")
 [node name="Player" parent="." instance=ExtResource("8_6a1y1")]
 
 [node name="Objects" type="Node2D" parent="."]
+
+[node name="Sountrack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_3d6t2")

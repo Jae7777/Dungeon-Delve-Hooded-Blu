@@ -25,6 +25,7 @@ func _process(_delta):
 		position += get_global_mouse_position().normalized() * dash_distance
 		#position += get_global_mouse_position().normalized() * dash_distance
 		$TImers/DashTimer.start()
+		$PlayerAnimation/Dash.play()
 
 
 func get_input(direction):

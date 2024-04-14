@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://byv3gagsjg134"]
+[gd_scene load_steps=25 format=3 uid="uid://byv3gagsjg134"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_rh1p2"]
 [ext_resource type="Texture2D" uid="uid://c28p8xdg8d6c0" path="res://Assets/Player/Contact 1.png" id="2_aqtp5"]
@@ -14,7 +14,10 @@
 [ext_resource type="Script" path="res://Scenes/SwordAnimation.gd" id="10_2ljhd"]
 [ext_resource type="Texture2D" uid="uid://ca0hj5xgv57bs" path="res://Assets/Weapons/Sword Swing 3.png" id="12_kbtte"]
 [ext_resource type="Texture2D" uid="uid://cx27tuedewvaq" path="res://Assets/Weapons/Sword Swing 4.png" id="13_wb3co"]
+[ext_resource type="AudioStream" uid="uid://cwbv14rt666yg" path="res://Assets/Sound Effects/concrete-footsteps-6752.mp3" id="15_1fbk2"]
 [ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="15_lfsra"]
+[ext_resource type="AudioStream" uid="uid://cd5q1xc8xokq2" path="res://Assets/Sound Effects/teleport-14639.mp3" id="16_aa70i"]
+[ext_resource type="AudioStream" uid="uid://dnqwmieq8534t" path="res://Assets/Sound Effects/sword-sound-2-36274.mp3" id="17_lhrhr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xepep"]
 animations = [{
@@ -104,6 +107,17 @@ script = ExtResource("10_2ljhd")
 position = Vector2(284, -196)
 scale = Vector2(1.56588, -1.10209)
 shape = SubResource("RectangleShape2D_x8unv")
+
+[node name="Walk_Sound" type="AudioStreamPlayer" parent="PlayerAnimation"]
+stream = ExtResource("15_1fbk2")
+volume_db = 2.0
+
+[node name="Dash" type="AudioStreamPlayer" parent="PlayerAnimation"]
+stream = ExtResource("16_aa70i")
+volume_db = -5.0
+
+[node name="Sword" type="AudioStreamPlayer" parent="PlayerAnimation"]
+stream = ExtResource("17_lhrhr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

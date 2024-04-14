@@ -48,12 +48,10 @@ func _process(delta):
 func take_damage(amount):
 	current_health -= amount
 	damage_taken.emit()
-	print(current_health)
 	
 
 func _on_body_entered(_body):
 	is_in_attack_range = true
-	print("entered")
 
 func _on_body_exited(_body):
 	is_in_attack_range = false

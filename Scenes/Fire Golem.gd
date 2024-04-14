@@ -31,7 +31,6 @@ func _process(delta):
 func take_damage(amount):
 	current_health -= amount
 	damage_taken.emit()
-	print("goloem", current_health)
 
 func _on_damage_timer_timeout():
 	can_attack = true
