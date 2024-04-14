@@ -24,7 +24,7 @@ var object = [
 var waves_defeated
 
 func _ready():
-	$"../Sountrack".play()
+	
 	player = $"../Player"
 	waves_defeated = 0
 	
@@ -56,11 +56,9 @@ func _process(_delta):
 	if get_child_count() == 0:
 		spawnEnemies()
 		waves_defeated += 1
-	if waves_defeated == 2:
-		$"../Sountrack".stop()
 
 func spawnEnemies():
-	if waves_defeated == 1:
+	if waves_defeated % 2 == 1:
 		$"../Boss Laugh".play()
 		$"../BossMusic".play()
 		var boss = bosses[0].instantiate()
@@ -69,7 +67,8 @@ func spawnEnemies():
 		pass
 		#increment waves defeated when boss ded
 	else:
-	
+		$"../Sountrack".play()
+		$"../BossMusic".stop()
 		for i in range(wave_size):
 			var spawnPosition = calculateRandomSpawnPosition()
 			var enemy = enemies[randi_range(0, enemies.size() - 1)].instantiate().with_data(randi_range(0, 2))
@@ -81,9 +80,10 @@ func calculateRandomSpawnPosition():
 	var distance = randf_range(200, spawnRadius)
 	var xOffset = distance * cos(angle)
 	var yOffset = distance * sin(angle)
-	var spawnPosition = player.position + Vector2(xOffset, yOffset)
-	if (spawnPosition.x < -20 * 16 or spawnPosition.y > 50 * 16 or spawnPosition.x > 80 * 16 or spawnPosition.y < -20 * 16):
-		spawnPosition = Vector2(randf_range(-128, 256), randf_range(-128, 256))
+	var spawnPosition = Vector2(randf_range(player.position.x - 128, 80 * 16), randf_range(-20 * 16, player.position.y + 128))
+	#var spawnPosition = player.position + Vector2(xOffset, yOffset)
+	#if (spawnPosition.x < -20 * 16 or spawnPosition.y > 50 * 16 or spawnPosition.x > 80 * 16 or spawnPosition.y < -20 * 16):
+		#spawnPosition = Vector2(randf_range(-128, 256), randf_range(-128, 256))
 	return spawnPosition
 
 

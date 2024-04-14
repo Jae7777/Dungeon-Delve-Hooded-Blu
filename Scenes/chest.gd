@@ -15,6 +15,7 @@ func _process(_delta):
 		queue_free()
 
 func with_data(_pos):
+	position = _pos
 	return self
 
 func take_damage(amount):

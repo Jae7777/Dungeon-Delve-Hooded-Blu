@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://c4j3pq03yrono"]
+
+[ext_resource type="Texture2D" uid="uid://bdlt17ydch4pq" path="res://Assets/Enemies/Ghost Enemy.png" id="1_ch60f"]
+[ext_resource type="Script" path="res://Scenes/ghost_enemy.gd" id="1_mxlhq"]
+[ext_resource type="Texture2D" uid="uid://bas04lh0bc12v" path="res://Assets/Enemies/Ghost Sway.png" id="3_y8ino"]
+[ext_resource type="Script" path="res://Scenes/GhostAnimation.gd" id="4_tny5p"]
+[ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="5_ms8im"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rrc41"]
+height = 33.4239
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3yc2"]
+radius = 109.0
+height = 337.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kx5ha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ch60f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_y8ino")
+}],
+"loop": true,
+"name": &"Float",
+"speed": 2.0
+}]
+
+[sub_resource type="Theme" id="Theme_whegf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkj3e"]
+bg_color = Color(0.784314, 0, 0, 1)
+
+[node name="GhostEnemy" type="Area2D"]
+light_mask = 2
+visibility_layer = 2
+collision_layer = 2
+script = ExtResource("1_mxlhq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 6)
+scale = Vector2(7.08, 7.36)
+shape = SubResource("CapsuleShape2D_rrc41")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 36)
+scale = Vector2(1, 0.227681)
+shape = SubResource("CapsuleShape2D_s3yc2")
+
+[node name="GhostAnimation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kx5ha")
+animation = &"Float"
+script = ExtResource("4_tny5p")
+
+[node name="HealthBar" type="ProgressBar" parent="." node_paths=PackedStringArray("target")]
+offset_left = -79.0
+offset_top = 135.0
+offset_right = 79.0
+offset_bottom = 152.0
+theme = SubResource("Theme_whegf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jkj3e")
+step = 1.0
+show_percentage = false
+script = ExtResource("5_ms8im")
+target = NodePath("..")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="DamageTimer" type="Timer" parent="Timers"]
+wait_time = 0.7
+
+[node name="DeathAnimationTImer" type="Timer" parent="Timers"]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="damage_taken" from="." to="HealthBar" method="_on_ghost_enemy_damage_taken"]
+[connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
+[connection signal="timeout" from="Timers/DeathAnimationTImer" to="GhostAnimation" method="_on_death_animation_t_imer_timeout"]

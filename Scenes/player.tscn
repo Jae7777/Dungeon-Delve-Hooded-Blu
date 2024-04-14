@@ -49,15 +49,15 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("2_nkxap")
 }, {
-"duration": 1.0,
+"duration": 5.0,
 "texture": ExtResource("8_15ccw")
 }, {
-"duration": 1.0,
+"duration": 5.0,
 "texture": ExtResource("9_ryulh")
 }],
 "loop": false,
 "name": &"dash",
-"speed": 5.0
+"speed": 0.5
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1acr5"]
@@ -84,7 +84,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8unv"]
-size = Vector2(236.547, 508.124)
+size = Vector2(421.488, 715.005)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmgbv"]
 radius = 92.0
@@ -107,7 +107,7 @@ animation = &"dash"
 script = ExtResource("7_0a1af")
 
 [node name="Hitbox" type="Area2D" parent="PlayerAnimation"]
-position = Vector2(80, 120.736)
+position = Vector2(120, 0)
 scale = Vector2(1, 0.973681)
 collision_mask = 10
 script = ExtResource("8_xc4v3")
@@ -120,7 +120,7 @@ animation = &"Swing"
 script = ExtResource("10_2ljhd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerAnimation/Hitbox"]
-position = Vector2(284, -196)
+position = Vector2(202, -81.9996)
 scale = Vector2(1.56588, -1.10209)
 shape = SubResource("RectangleShape2D_x8unv")
 

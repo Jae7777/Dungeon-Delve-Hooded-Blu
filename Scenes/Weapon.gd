@@ -1,7 +1,7 @@
 extends Node2D
 
 var bodies_in_hitbox = {}
-var damage = 10
+var damage = 5
 
 func _process(_delta):
 	if Input.is_action_just_pressed("PrimaryAction"):
