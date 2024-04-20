@@ -12,8 +12,7 @@ func with_data(pos):
 	
 func _process(_delta):
 	if is_in_attack_range:
-		target.max_health += 20
-		target.current_health += 20
+		target.health.change_max(target.health.max_val() + 10)
 		queue_free()
 
 

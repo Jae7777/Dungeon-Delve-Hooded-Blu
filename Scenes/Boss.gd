@@ -4,8 +4,6 @@ const MOVE_SPEED = 150
 signal damage_taken()
 var move_direction = Vector2()
 var target = null
-var max_health = 240
-var current_health = max_health
 var damage = 10
 var can_attack = true
 var is_in_attack_range = false
@@ -13,6 +11,7 @@ var fireball_scene = preload ("res://Scenes/fireball.tscn")
 var orb = preload("res://Scenes/BigFireBallProjectile.tscn")
 var boss_ability_up = true
 
+var health = Health.new().with_data(240)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,7 +25,7 @@ func _process(delta):
 	var target_position = target.get_position()
 	var velocity = (target_position - get_position()).normalized() * MOVE_SPEED
 	position += velocity * delta
-	if current_health <= 0:
+	if health.val() == 0:
 		queue_free()
 	
 	if(boss_ability_up == true):
@@ -54,7 +53,7 @@ func _on_attack_timer_timeout():
 	can_attack = true
 
 func take_damage(amount):
-	current_health -= amount
+	health.reduce(amount)
 	damage_taken.emit()
 	
 

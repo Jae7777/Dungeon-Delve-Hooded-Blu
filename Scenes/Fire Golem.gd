@@ -4,8 +4,6 @@ signal damage_taken()
 signal attack()
 signal on_death()
 var target = null
-var max_health = 15
-var current_health = max_health
 var damage = 0
 var can_attack = true
 var speedup =preload("res://Scenes/SpeedUp.tscn")
@@ -15,6 +13,8 @@ var chest = preload("res://Scenes/chest.tscn")
 var atkup = preload("res://Scenes/attackup.tscn")
 var Fireball: PackedScene = preload("res://Scenes/fireball.tscn")
 
+var health = Health.new().with_data(15)
+
 func _ready():
 	target = $"../../Player"
 
@@ -22,7 +22,7 @@ func with_data(_size):
 	return self
 	
 func _process(_delta):
-	if current_health <= 0:
+	if health.val() == 0:
 		var drop = randf_range(0, 10)
 		if(drop <= 1):
 			var atkup1 = atkup.instantiate().with_data(position)
@@ -47,8 +47,8 @@ func _process(_delta):
 		attack.emit()
 		$Timers/AttackTimer.start()
 		
-func take_damage(amount):
-	current_health -= amount
+func take_damage(amount: int):
+	health.reduce(amount)
 	damage_taken.emit()
 
 func _on_golem_animation_animation_finished():

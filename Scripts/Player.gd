@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 signal player_attack(area)
 signal damage_taken()
@@ -9,9 +10,9 @@ var dash_distance = 100
 var SPEED = 400
 var face_direction = Vector2()
 var is_vulnerable
-var max_health = 100
-var current_health = max_health
 var windslash_scene = preload("res://windslash.tscn")
+
+var health = Health.new().with_data(100)
 
 var can_dash = true
 var can_attack = true
@@ -46,17 +47,15 @@ func get_input(direction):
 	velocity = direction * SPEED
 	return direction != Vector2.ZERO
 
-func heal(amount):
-	current_health += amount
+func heal(amount: int):
+	health.add(amount)
 	healing.emit()
-	if current_health > max_health:
-		current_health = max_health
 
-func take_damage(amount):
+func take_damage(amount: int):
 	$PlayerAnimation/OOF.play();
-	current_health -= amount
+	health.reduce(amount)
 	damage_taken.emit()
-	if current_health <= 0:
+	if health.val() == 0:
 		queue_free()
 		get_tree().change_scene_to_file("res://game_death.tscn")
 

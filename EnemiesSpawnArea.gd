@@ -21,7 +21,7 @@ var object = [
 	preload("res://Scenes/heart_crystal.tscn"),
 	preload("res://Scenes/chest.tscn")
 ]
-var waves_defeated
+var waves_defeated: int
 
 func _ready():
 	
@@ -62,7 +62,7 @@ func spawnEnemies():
 		$"../Boss Laugh".play()
 		$"../BossMusic".play()
 		var boss = bosses[0].instantiate()
-		boss.max_health = waves_defeated * 240
+		boss.health.change_max(waves_defeated * 240)
 		boss.position = Vector2(0, 0)
 		add_child(boss)
 		pass
