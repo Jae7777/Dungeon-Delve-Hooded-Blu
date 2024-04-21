@@ -121,8 +121,7 @@ script = ExtResource("7_0a1af")
 [node name="Sword" type="Area2D" parent="PlayerAnimation"]
 position = Vector2(120, 0)
 scale = Vector2(1, 0.973681)
-collision_layer = 4
-collision_mask = 74
+collision_mask = 10
 script = ExtResource("8_xc4v3")
 
 [node name="SwordAnimation" type="AnimatedSprite2D" parent="PlayerAnimation/Sword"]

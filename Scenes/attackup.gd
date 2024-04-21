@@ -4,7 +4,7 @@ var is_in_attack_range = false
 var target
 
 func _ready():
-	target = $"../../Player/PlayerAnimation/Hitbox"
+	target = $"../../Player/PlayerAnimation/Sword"
 
 func with_data(pos):
 	position = pos

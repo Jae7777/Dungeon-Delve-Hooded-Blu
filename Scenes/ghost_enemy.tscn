@@ -32,10 +32,11 @@ animations = [{
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jkj3e"]
 bg_color = Color(0.784314, 0, 0, 1)
 
-[node name="GhostEnemy" type="Area2D"]
+[node name="GhostEnemy" type="StaticBody2D"]
 light_mask = 2
 visibility_layer = 2
-collision_layer = 2
+collision_layer = 66
+collision_mask = 5
 script = ExtResource("1_mxlhq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -74,8 +75,6 @@ wait_time = 0.7
 wait_time = 0.8
 one_shot = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="damage_taken" from="." to="HealthBar" method="_on_ghost_enemy_damage_taken"]
 [connection signal="timeout" from="Timers/DamageTimer" to="." method="_on_damage_timer_timeout"]
 [connection signal="timeout" from="Timers/DeathAnimationTImer" to="GhostAnimation" method="_on_death_animation_t_imer_timeout"]

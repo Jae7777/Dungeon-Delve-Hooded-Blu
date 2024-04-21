@@ -37,7 +37,7 @@ func _process(_delta):
 	if Input.is_action_just_pressed("PrimaryAction") and can_attack:
 		can_attack = false
 		$TImers/AttackTimer.start()
-		$PlayerAnimation/Sword.play()
+		$PlayerAnimation/Sword/SwordAnimation.play()
 		var windslash = windslash_scene.instantiate().with_data($PlayerAnimation/Marker2D.global_position, get_global_mouse_position(), $PlayerAnimation/Sword)
 		$"../Projectiles".add_child(windslash)
 

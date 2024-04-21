@@ -121,8 +121,7 @@ script = ExtResource("7_0a1af")
 [node name="Sword" type="Area2D" parent="PlayerAnimation"]
 position = Vector2(120, 0)
 scale = Vector2(1, 0.973681)
-collision_layer = 4
-collision_mask = 74
+collision_mask = 10
 script = ExtResource("8_xc4v3")
 
 [node name="SwordAnimation" type="AnimatedSprite2D" parent="PlayerAnimation/Sword"]
@@ -177,7 +176,10 @@ wait_time = 0.05
 [connection signal="damage_taken" from="." to="HealthBar" method="_on_player_damage_taken"]
 [connection signal="dash" from="." to="PlayerAnimation" method="_on_player_dash"]
 [connection signal="healing" from="." to="HealthBar" method="_on_player_healing"]
+[connection signal="area_shape_entered" from="PlayerAnimation/Sword" to="PlayerAnimation/Sword" method="_on_area_shape_entered"]
+[connection signal="area_shape_exited" from="PlayerAnimation/Sword" to="PlayerAnimation/Sword" method="_on_area_shape_exited"]
 [connection signal="body_entered" from="PlayerAnimation/Sword" to="PlayerAnimation/Sword" method="_on_body_entered"]
+[connection signal="body_exited" from="PlayerAnimation/Sword" to="PlayerAnimation/Sword" method="_on_body_exited"]
 [connection signal="timeout" from="TImers/AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="TImers/AttackTimer" to="PlayerAnimation/Sword/SwordAnimation" method="_on_timer_timeout"]
 [connection signal="timeout" from="TImers/HitTimer" to="." method="_on_hit_timer_timeout"]

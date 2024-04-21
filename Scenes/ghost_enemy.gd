@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 signal damage_taken()
 signal on_death()
 const MOVE_SPEED = 300
